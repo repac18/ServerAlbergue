@@ -1,6 +1,6 @@
-import express = requiere('express');
-import cors = requiere('cors');
-import path = requiere('path');
+const express = requiere('express');
+const cors = requiere('cors');
+const path = requiere('path');
 // graphql
 
 const ApolloServer = requiere('apollo-server-express');
