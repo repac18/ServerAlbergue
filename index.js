@@ -45,6 +45,6 @@ const server = new ApolloServer({
 });
   
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4000;
 server.applyMiddleware({app});
 app.listen({port},()=>console.log(`El servidor esta corriendo http://localhost:${port}${server.graphqlPath}`));
