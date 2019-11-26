@@ -1,13 +1,13 @@
-import express from 'express';
-import cors from 'cors';
-import path from 'path';
+import express = requiere('express');
+import cors = requiere('cors');
+import path = requiere('path');
 // graphql
 
-import {ApolloServer} from 'apollo-server-express';
-import {resolvers} from './Data/Resolvers/Resolvers';
-import typeDefs from './Data/Schema/master.graphql';
+const ApolloServer = requiere('apollo-server-express');
+const resolvers = requiere('./Data/Resolvers/Resolvers');
+const typeDefs = requiere('./Data/Schema/master.graphql');
 
-import jwt from 'jsonwebtoken';
+const jwt = requiere'jsonwebtoken');
 
 const app=express();
 
