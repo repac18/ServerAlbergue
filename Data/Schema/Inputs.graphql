@@ -1,0 +1,240 @@
+input Parametrosinput {
+    id:ID
+    Nombre: String
+    Valor: String
+    Eliminado: Int
+}
+
+input AsignacionClienteInput {
+      id:ID
+        Edificio:String
+        Nivel:String
+        Habitacion:String
+        Cliente:String
+        FechaIngreso:String
+        FechaSalida:String
+        Eliminado: Int
+        Edificios:Edificioinput
+}
+
+input Configuracionesinput  {
+    id:ID
+    Nombre: String
+    Valor: [ConfiguracionesValorinput]
+    Eliminado: Int
+}
+input ConfiguracionesValorinput {
+    Nombre: String
+    Valor:String
+}
+input ListaDeValoresinput  {
+    id:ID
+    Nombre: String
+    Valor: [ListaDeValoresValorinput]
+    Eliminado: Int
+}
+
+input  ListaDeValoresValorinput {
+    Nombre: String
+    Valor:String
+}
+
+input Clientesinput {
+    id:ID
+    Nombre: String
+    Apellido:String
+    Edad: Int
+    Direccion: String
+    Dpi: String
+    Nit: String
+    Sexo: String
+    Municipio: String
+    Departamento: String
+    Eliminado:Int
+    Responsable:Int
+}
+input Edificioinput  {
+    id:ID
+    Nombre:String
+    Latitud:String
+    Longitud:String
+    Estructura: [Nivelinput]
+    Eliminado: Int
+}
+input Nivelinput {
+     Nombre:String
+     Nivel:Int
+     Habitaciones:[Habitacioninput]
+}
+
+input Habitacioninput {
+     Nombre:String
+     Habitacion:Int
+     Capacidad:Int
+     Ocupados:Int
+}
+
+input Bitacorainput  {
+    id:ID
+    Evento:String
+    Documento:String
+    UsuarioId:ID
+    Fecha:String
+    Pagina:String
+    Data:[BitacoraDatainput]   
+}
+
+input BitacoraDatainput {
+    Nombre: String
+    Data:String
+}
+
+input BitacoraSesioninput {
+    id:ID
+    UsuarioId:ID
+    FechaInicio:String
+    FechaCierre:String
+}
+
+
+input Pacientesinput {
+    id:ID
+	Nombre: String
+    Apellido: String
+    Edad: Int
+    Direccion:String
+    Dpi:String
+    Nit:String
+    Sexo:String
+    Municipio:String
+    Departamento:String
+    Eliminado: Int
+}
+
+input Hospitalinput {
+    id:ID
+    Nombre:String
+    Descripcion:String
+    Latitud:String
+    Longitud:String
+    Eliminado: Int
+}
+
+
+input Productosinput {
+    id:ID
+    Nombre:String
+    Descripcion:String
+    SKU: String
+    CodigoBarra:String
+    Clasificacion:String
+    Tipo:String
+    Cantidad: Int 
+    Precio: Int 
+    Eliminado: Int
+}
+
+input HistorialProductosinput {
+    id:ID
+    ProductoId: ID
+    Fecha: String
+    Cantidad: Int
+    Precio: Int 
+}
+
+
+input EntradaSalidaInventarioinput {
+    id:ID
+	DonacionId: ID,
+	UsuarioId: ID
+	Productos: [Productosinput]
+    Responsable: String
+    Tipo:Int
+    Fecha:String
+    Estado:String
+    Total:Int
+}
+
+input AsignacionPacienteinput {
+    id:ID
+    Hospitales:String
+    Clientes:[Clientesinput]
+    Pacientes: [Pacientesinput]
+    Fecha: String
+    Estado: String
+    FechaSalida:String
+    Eliminado:Int
+    Observaciones:String
+}
+
+input Donacioninput  {
+    id: ID
+	UsuarioId:ID
+    Responsable: String
+    Donante: String
+    Tipo:Int
+    Fecha:String
+    Estado:String
+    Cantidad: Int
+}
+
+
+input CajaChicainput  {
+    id:ID
+    Cantidad: Int
+    Fecha:String
+}
+
+input EntradaSalidaCajaChicainput  {
+    id:ID
+	DonacionId: ID
+	UsuarioId: ID
+    Responsable: String
+    Cantidad: Int
+    Tipo:Int
+    Fecha:String
+    Estado:String
+}
+
+
+input HistorialCajaChicainput  {
+    id:ID
+    Cantidad: Int
+    Fecha:String
+}
+
+input Rolesinput {
+    id: ID
+    Nombre: String
+    Descripcion: String
+    Permiso: [Permisosinput]
+    Eliminado: Int
+}
+
+input Permisosinput {
+    id: ID
+    Nombre: String
+    Descripcion: String
+    URL:String
+    Menu:String
+    Activo: Boolean
+    Opcion:[Opcionesinput]
+    Eliminado: Int
+}
+
+input Usuariosinput {
+    id: ID
+    Usuario: String
+    Nombre: String
+    Password: String
+    Rol: [Rolesinput]
+    Eliminado: Int
+}
+
+input Opcionesinput {
+    id: ID
+    Nombre: String
+    Descripcion: String
+    Activo: Boolean
+    Eliminado: Int
+}

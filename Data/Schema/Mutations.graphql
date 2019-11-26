@@ -1,0 +1,147 @@
+type Mutation {
+
+
+    """Crea parametros """
+    crearParametros(input:Parametrosinput):Parametros
+    """Crear la Configuracion """
+    crearConfiguracion(input:Configuracionesinput):Configuraciones
+
+
+
+  """Crear la Asignacion Cliente """
+  
+  crearAsignacionCliente(input:AsignacionClienteInput):String
+
+
+    crearListaDeValores(input:ListaDeValoresinput):ListaDeValores
+    """Crea Los Clientes """
+    crearClientes(input:Clientesinput):Clientes
+    """CrearResponsable """
+    crearResponsables(input:Clientesinput):Clientes
+    """Crea el Edificio"""
+    crearEdificio(input:Edificioinput):Edificio
+    """Crea la Bitacora"""
+    crearBitacora(input:Bitacorainput):Bitacora
+    """Crea la Bitacora de Sesion"""
+    crearBitacoraSesion(input:BitacoraSesioninput):BitacoraSesion
+    """Crea Los Pacientes"""
+    crearPacientes(input:Pacientesinput):Pacientes
+    """Crea el Hospital"""
+    crearHospital(input:Hospitalinput):Hospital
+    """Crea los Productos"""
+    crearProductos(input:Productosinput):Productos
+    """Crea el Historial de Productos"""
+    crearHistorialProductos(input:HistorialProductosinput):HistorialProductos
+    """Crea las Entradas y Salidas del Inventario"""
+    crearEntradaSalidaInventario(input:EntradaSalidaInventarioinput):EntradaSalidaInventario
+    """Crear Asignacion Pacientes"""
+    crearAsignacionPacientes(input:AsignacionPacienteinput):AsignarPaciente
+    """Crea las Donaciones al Albergue"""
+    crearDonacion(input:Donacioninput):Donacion
+    """Crea la Caja Chica"""
+    crearCajaChica(input:CajaChicainput):CajaChica
+    """Crea la Entrada y Salida de la caja Chica"""
+    crearEntradaSalidaCajaChica(input:EntradaSalidaCajaChicainput):EntradaSalidaCajaChica
+    """Crea el Historial de la Caja Chica"""
+    crearHistorialCajaChica(input:HistorialCajaChicainput):HistorialCajaChica
+    """Crea Los Roles """
+    crearRoles(input:Rolesinput):String
+    """Crea los Permisos """
+    crearPermisos(input:Permisosinput):String
+    """Crea los Usuarios """
+    crearUsuarios(input:Usuariosinput):String
+    """AgregarPermisos Los  Roles """
+    AgregarPermisos(input:Rolesinput):Roles
+
+    """Actualiza_Los parametros """
+    actualizarParametros(input:Parametrosinput):Parametros
+    """Actualiza_Los Configuracion """
+    actualizarConfiguracion(input:Configuracionesinput):Configuraciones
+
+    actualizarListaDeValores(input:ListaDeValoresinput):ListaDeValores
+    """Actualiza_Los Los Clientes """
+    actualizarCliente(input:Clientesinput):Clientes
+    """Actualiza_Los Los Responsable """
+    actualizarResponsable(input:Clientesinput):Clientes
+    """Actualiza_Los el Edificio"""
+    actualizarEdificio(input:Edificioinput):Edificio
+    """Actualiza_Los la Bitacora"""
+    actualizarBitacora(input:Bitacorainput):Bitacora
+    """Actualiza_Los la Bitacora de Sesion"""
+    actualizarBitacoraSesion(input:BitacoraSesioninput):BitacoraSesion
+    """Actualiza_Los Los Pacientes"""
+    actualizarPacientes(input:Pacientesinput):Pacientes
+    """Actualiza_Los el Hospital"""
+    actualizarHospital(input:Hospitalinput):Hospital
+    """Actualiza_Los los Productos"""
+    actualizarProductos(input:Productosinput):Productos
+    """Actualiza_Los el Historial de Productos"""
+    actualizarHistorialProductos(input:HistorialProductosinput):HistorialProductos
+    """Actualiza_Los las Entradas y Salidas del Inventario"""
+    actualizarEntradaSalidaInventario(input:EntradaSalidaInventarioinput):EntradaSalidaInventario
+    """Actualiza_Los las Donaciones al Albergue"""
+    actualizarDonacion(input:Donacioninput):Donacion
+    """Actualiza_Los la Caja Chica"""
+    actualizarCajaChica(input:CajaChicainput):CajaChica
+    """Actualiza_Los la Entrada y Salida de la caja Chica"""
+    actualizarEntradaSalidaCajaChica(input:EntradaSalidaCajaChicainput):EntradaSalidaCajaChica
+    """Actualiza_Los el Historial de la Caja Chica"""
+    actualizarHistorialCajaChica(input:HistorialCajaChicainput):HistorialCajaChica
+    """Actualiza_Los Los Roles """
+    actualizarRoles(input:Rolesinput):Roles
+    """Actualiza_Los los Permisos """
+    actualizarPermisos(input:Permisosinput):Permisos
+    """Actualiza_Los los Usuarios """
+    actualizarUsuarios(input:Usuariosinput):Usuarios
+
+
+
+
+
+    eliminarParametros(id:ID!):String
+
+    eliminarConfiguracion(id:ID!):String
+
+    eliminarListaDeValores(id:ID!):String
+
+    eliminarClientes (id:ID!):String
+
+    eliminarResponsables(id:ID!):String
+
+    eliminarEdificio(id:ID!):String
+
+    eliminarBitacora(id:ID!):String
+
+    eliminarBitacoraSesion(id:ID!):String
+
+    eliminarPacientes(id:ID!):String
+
+    eliminarHospital(id:ID!):String
+
+    eliminarProductos(id:ID!):String
+
+    eliminarHistorialProductos(id:ID!):String
+
+    eliminarEntradaSalidaInventario(id:ID!):String
+
+    eliminarDonacion(id:ID!):String
+
+    eliminarCajaChica(id:ID!):String
+
+    eliminarEntradaSalidaCajaChica(id:ID!):String
+
+    eliminarHistorialCajaChica(id:ID!):String
+
+    eliminarRoles(id:ID!):String
+
+    eliminarPermisos(id:ID!):String
+
+    eliminarUsuarios(id:ID!):String
+
+    eliminarAsignacionPaciente(id:ID!):String
+
+   eliminarAsignacionCliente(id:ID!,Edificio:String,Nivel:String,Habitacion:String):String
+
+
+    autenticarUsuario(usuario:String!,password:String!):Token
+}

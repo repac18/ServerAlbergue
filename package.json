@@ -1,0 +1,36 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:linux": "rm -rf ./node_modules/.cache/babel-loader && nodemon index.js  --exec babel-node --presets babel-preset-env",
+    "start:windows": "rimraf ./node_modules/.cache/babel-loader && nodemon index.js  --exec babel-node --presets babel-preset-env",
+     "test": "react-scripts test --env=jsdom",
+    "start": "npm run start:windows",
+	"heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "F": "0.0.4",
+    "apollo-server-express": "^2.9.0",
+    "babel-plugin-import-graphql": "^2.7.0",
+    "bcrypt": "^3.0.6",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql-import": "^0.7.1",
+    "graphql-tools": "^4.0.5",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.6.11"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "nodemon": "^1.19.1"
+  }
+}

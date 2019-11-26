@@ -1,0 +1,129 @@
+[
+  {
+    "name": "Inicio",
+    "Icon": "Inicio",
+    "title": "Inicio",
+    "url": "/"
+  },
+  {
+    "name": "Clientes",
+    "Icon": "Clientes",
+    "title": "Clientes",
+    "url": "/Clientes"
+  },
+  {
+    "name": "Pacientes",
+    "Icon": "Pacientes",
+    "title": "Paciente",
+    "url": "/Pacientes"
+  },
+  {
+    "name": "Clientes",
+    "Icon": "Clientes",
+    "title": "Responsables",
+    "url": "/Responsables"
+  },
+  {
+    "name": "Asignacion",
+    "Icon": "Asignacion",
+    "title": "Asignaciones",
+    "children": [
+      {
+        "name": "Clientes",
+        "title": "Paciente",
+        "url": "/AsignacionPaciente/Registros"
+      },
+      {
+        "name": "Clientes",
+        "title": "Listado Cliente",
+        "url": "/AsignacionCliente/Registros"
+      }
+    ]
+  },
+  {
+    "name": "Caja",
+    "Icon": "Cajas",
+    "title": "Caja",
+    "url": "/Caja"
+  },
+  {
+    "name": "Productos",
+    "Icon": "Productos",
+    "title": "Productos",
+    "url": "/Productos"
+  },
+  {
+    "name": "Movimientos",
+    "Icon": "Movimientos",
+    "title": "Movimientos",
+    "children": [
+      {
+        "name": "Movimiento Caja",
+        "title": "Caja",
+        "url": "/MovimientoCaja"
+      },
+      {
+        "name": "Movimiento Inventario",
+        "title": "Inventario",
+        "url": "/MovimientoInventario"
+      }
+    ]
+  },
+  {
+    "name": "Edificios",
+    "Icon": "Edificios",
+    "title": "Edificios",
+    "url": "/Edificios"
+  },
+  {
+    "name": "Donaciones",
+    "Icon": "Donaciones",
+    "title": "Donacion",
+    "url": "/Donaciones"
+  },
+  {
+    "name": "Reportes",
+    "Icon": "Reportes",
+    "title": "Reportes",
+    "url": "/Reportes"
+  },
+  {
+    "name": "Hospitales",
+    "Icon": "Hospitales",
+    "title": "Hospitales",
+    "url": "/Hospitales"
+  },
+  {
+    "name": "Seguridad",
+    "Icon": "Seguridad",
+    "title": "Seguridad",
+    "children": [
+      {
+        "name": "Usuarios",
+        "url": "/Usuarios",
+        "title": "Usuarios"
+      },
+      {
+        "name": "Permisos",
+        "url": "/Permisos",
+        "title": "Permisos"
+      },
+      {
+        "name": "Roles",
+        "url": "/Roles",
+        "title": "Roles"
+      },
+      {
+        "name": "Asignar Permiso",
+        "url": "/AsignarPermisos",
+        "title": "Asignar Permiso"
+      }
+    ]
+  },
+  {
+    "name": "Clientes",
+    "Icon": "Reportes",
+    "url": "/Reportes",
+    "title": "Reportes"
+  }
+]

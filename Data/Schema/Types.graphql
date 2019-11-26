@@ -1,0 +1,306 @@
+type Parametros {
+    id:ID
+    Nombre: String
+    Valor: String
+    Eliminado: Int
+}
+
+type Configuraciones  {
+    id:ID
+    Nombre: String
+    Valor: [ConfiguracionesValor]
+    Eliminado: Int
+}
+
+
+type AsignacionCliente {
+        id:ID
+        Edificio:String
+        Nivel:String
+        Habitacion:String
+        Cliente:String
+        FechaIngreso:String
+        FechaSalida:String
+        Eliminado: Int
+}
+
+type ConfiguracionesValor  {
+    Nombre: String
+    Valor: String
+}
+
+type ListaDeValores  {
+    id:ID
+    Nombre: String
+    Valor: [ListaDeValoresValor]
+    Eliminado: Int
+}
+
+type  ListaDeValoresValor {
+    Nombre: String
+    Valor:String
+}
+
+type Clientes {
+    id:ID
+    Nombre: String
+    Apellido:String
+    Edad: Int
+    Direccion: String
+    Dpi: String
+    Nit: String
+    Sexo: String
+    Municipio: String
+    Departamento: String
+    Eliminado:Int
+    Responsable:Int
+}
+
+type Edificio  {
+    id:ID
+    Nombre:String
+    Latitud:String
+    Longitud:String
+    Estructura: [Nivel]
+    Eliminado: Int
+}
+
+type Nivel {
+    Nombre:String
+    Nivel:Int
+    Habitaciones:[Habitacion]
+}
+
+type Habitacion {
+     Nombre: String
+     Habitacion: Int
+     Capacidad: Int
+      Ocupados:Int
+}
+
+type Bitacora  {
+    id:ID
+    Evento:String
+    Documento:String
+    UsuarioId:ID
+    Fecha:String
+    Pagina:String
+    Data:[BitacoraData]
+}
+
+
+type  BitacoraData {
+    Nombre: String
+    Data:String
+}
+
+type BitacoraSesion {
+    id:ID
+    UsuarioId:ID
+    FechaInicio:String
+    FechaCierre:String
+}
+
+
+type Pacientes {
+    id:ID
+    Nombre: String
+    Apellido: String
+    Edad: Int
+    Direccion:String
+    Dpi:String
+    Nit:String
+    Sexo:String
+    Municipio:String
+    Departamento:String
+    Eliminado: Int
+}
+
+type Hospital {
+    id:ID
+    Nombre:String
+    Descripcion:String
+    Latitud:String
+    Longitud:String
+    Eliminado: Int
+}
+
+
+
+type Productos {
+    id:ID
+    Nombre:String
+    Descripcion:String
+    SKU: String
+    CodigoBarra:String
+    Clasificacion:String
+    Tipo:String
+    Cantidad: Int
+    Precio: Int
+    Eliminado: Int
+}
+
+type HistorialProductos {
+    id:ID
+    ProductoId: ID
+    Fecha: String
+    Cantidad: Int
+    Precio: Int
+}
+
+
+type EntradaSalidaInventario {
+    id:ID
+    DonacionId: ID,
+    UsuarioId: ID
+    Productos: [Productos]
+    Responsable: String
+    Tipo:Int
+    Fecha:String
+    Estado:String
+    Total:Int
+}
+
+type AsignarPaciente {
+       id:ID
+    Hospitales:String
+    Clientes:[Clientes]
+    Pacientes: [Pacientes]
+    Fecha: String
+    Estado: String
+    FechaSalida:String
+    Eliminado:Int
+    Observaciones:String
+}
+
+type Donacion  {
+    id: ID
+    UsuarioId:ID
+    Responsable: String
+    Donante: String
+    Tipo:Int
+    Fecha:String
+    Estado:String
+    Cantidad:Int
+}
+
+
+type CajaChica  {
+    id:ID
+    Cantidad: Int
+    Fecha:String
+}
+
+type EntradaSalidaCajaChica  {
+    id:ID
+    DonacionId: ID
+    UsuarioId: ID
+    Responsable: String
+    Cantidad: Int
+    Tipo:Int
+    Fecha:String
+    Estado:String
+}
+
+
+type HistorialCajaChica  {
+    id:ID
+    Cantidad: Int
+    Fecha:String
+}
+
+
+
+type Token {
+    token:String!
+}
+
+
+type Usuarios {
+    id: ID
+    Usuario: String
+    Nombre: String
+    Password: String
+    Rol: [Roles]
+    Eliminado: Int
+}
+
+type Roles {
+    id: ID
+    Nombre: String
+    Descripcion: String
+    Permiso: [Permisos]
+    Eliminado: Int
+}
+
+type Permisos {
+    id: ID
+    Nombre: String
+    Descripcion: String
+    URL:String
+    Menu:String
+    Activo: Boolean
+    Opcion:[Opciones]
+    Eliminado: Int
+}
+
+type Opciones {
+    id: ID
+    Nombre: String
+    Descripcion: String
+    Activo: Boolean
+    Eliminado: Int
+}
+
+type Edi {
+Edificio:String
+Nivel:String
+Habitacion:String
+}
+
+type asigClier1 {
+Total:Float
+_id:String
+}
+
+type asigClier2 {
+Total:Float
+_id:String  
+}
+
+
+type asigpas {
+Fecha:String
+Estado:String
+
+}
+
+type asigpas1 {
+Total:Float
+_id:String
+}
+
+type asigpas2 {
+Total:Float
+_id:[Clientes]
+}
+
+type Municipios {
+    Municipio:String
+}
+
+type producr1 {
+Total:Float
+_id:String
+}
+
+type donacior1 {
+Total:Float
+_id:String
+}
+
+
+type donacior {
+   Tipo:String
+   id:String
+}

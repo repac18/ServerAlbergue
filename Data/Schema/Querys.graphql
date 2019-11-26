@@ -1,0 +1,126 @@
+type Query {
+    """Seleccionar todos los parametros"""
+    getparametros(limit:Int, Offset: Int):[Parametros]
+    """Seleccionar un parametro por id"""
+    getParametro(id:ID): Parametros
+
+    """Seleccionar todas las configuraciones"""
+    getConfiguraciones(limit:Int, Offset:Int):[Configuraciones]
+    """Seleccionar solo una configuracion por id"""
+    getConfiguracion(id:ID): Configuraciones
+
+    """Seleccionar todas las listas de valores"""
+    getListaDeValores(limit:Int, Offset:Int):[ListaDeValores]
+    """Seleccionar una sola lista de valores por id"""
+    getListaDeValor(id:ID): ListaDeValores
+ 
+
+  """Seleccionar todas las listas de valores"""
+    getAsignacionClientes(limit:Int, Offset:Int):[AsignacionCliente]
+    """Seleccionar una sola lista de valores por id"""
+    getAsignacionCliente(id:ID): AsignacionCliente
+
+
+    """Seleccionar todos los clientes"""    
+    getclientes(limit:Int, Offset:Int):[Clientes]
+    """Seleccionar un cliente por su id"""
+    getCliente(id:ID): Clientes
+
+    """seleccionar responsables"""
+    getresponsables(limit:Int,Offset:Int):[Clientes]
+    """select responsable"""
+    getResponsable(id:ID):Clientes
+
+    """Seleccionar todos los edificios"""
+    getedificios(limit:Int, Offset:Int):[Edificio]
+    """Seleccionar un edificio por su id"""
+    getedificio(id:ID): Edificio
+
+    """Seleccionar todas las bitacoras"""
+    getbitacoras(limit:Int, Offset:Int):[Bitacora]
+    """Seleccionar una bitacora por su id"""
+    getbitacora(id:ID): Bitacora
+
+    """Seleccionar todas las bitacoras de sesion"""
+    getbitacoraSesiones(limit:Int, Offset:Int):[BitacoraSesion]
+    """Seleccionar una bitacora de sesion por su id"""
+    getbitacoraSesion(id:ID): BitacoraSesion
+
+    """Seleccionar todos los pacientes"""
+    getpacientes(limit:Int, Offset:Int):[Pacientes]
+    """Seleccionar un paciente por su id"""
+    getpaciente(id:ID): Pacientes
+
+    """Seleccionar todos los hospitales"""
+    getHospitales(limit:Int, Offset:Int):[Hospital]
+    """Seleccionar un hospital por id"""
+    getHospital(id:ID): Hospital
+
+    """Seleccionar todos los productos"""
+    getproductos(limit:Int, Offset:Int):[Productos]
+    """Seleccionar un producto por su id"""
+    getproducto(id:ID): Productos
+
+    """Seleccionar todos los historiales de productos"""
+    gethistorialProductos(limit:Int, Offset:Int):[HistorialProductos]
+    """Seleccionar un historial de producto por su id"""
+    gethistorialProducto(id:ID): HistorialProductos
+
+    """Seleccionar todas las entradas y salidas de inventarios"""
+    getentradaSalidaInventarios(limit:Int, Offset:Int):[EntradaSalidaInventario]
+    """Seleccionar una entrada o salida de inventario por su id"""
+    getentradaSalidaInventario(id:ID): EntradaSalidaInventario
+
+    """Seleccionar todas las donaciones"""
+    getdonaciones(limit:Int, Offset:Int):[Donacion]
+    """Seleccionar una donacion por su id"""
+    getdonacion(id:ID): Donacion
+
+    """Seleccionar todas las cajas chica"""
+    getcajaChicas(limit:Int, Offset:Int):[CajaChica]
+    """Seleccionar una caja chica por su id"""
+    getcajaChica(id:ID): CajaChica
+
+    """Seleccionar todas las entradas y salidas de caja chica"""
+    getentradaSalidaCajaChicas(limit:Int, Offset:Int):[EntradaSalidaCajaChica]
+    """Seleccionar una entrada o salida de caja chica por su id"""
+    getentradaSalidaCajaChica(id:ID): EntradaSalidaCajaChica
+
+    """Seleccionar todos los historiales de caja chica"""
+    gethistorialCajaChicas(limit:Int, Offset:Int):[HistorialCajaChica]
+    """Seleccionar un historial de caja chica por su id"""
+    gethistorialCajaChica(id:ID): HistorialCajaChica
+
+    """Seleccionar todos los roles"""
+    getroles(limit:Int, Offset:Int):[Roles]
+    """Seleccionar un rol por su id"""
+    getrol(id:ID): Roles
+
+    """Seleccionar todos los permisos"""
+    getpermisos(limit:Int, Offset:Int):[Permisos]
+    """Seleccionar un permiso por su id"""
+    getpermiso(id:ID): Permisos
+
+    """Seleccionar todos los usuarios"""
+    getusuarios(limit:Int, Offset:Int):[Usuarios]
+    """Seleccionar un usuario por su id"""
+    getusuario(id:ID): Usuarios
+
+    """Seleccionar todos los AsignarPaciente"""
+        getasignacionpacientes(limit:Int, Offset:Int):[AsignarPaciente]
+    """Seleccionar un AsignarPaciente por su id"""
+        getasignacionpaciente(id:ID): AsignarPaciente
+
+   
+    obtenerUsuario:Usuarios 
+
+
+
+reportesasigClier1(id:ID):[asigClier1]
+reportesasigClier2(id:ID):[asigClier2]
+reportesasigpas1(id:ID):[asigpas1]
+reportesasigpas2(id:ID):[asigpas2]
+reportesproducr1(id:ID):[producr1]
+reportesdonacior1(id:ID):[donacior1]
+
+}
