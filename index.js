@@ -1,13 +1,13 @@
-const express = require('express');
-const cors = require('cors');
-const path = require('path');
+import express from 'express';
+import cors from 'cors';
+import path from 'path';
 // graphql
 
-const {ApolloServer} = require('apollo-server-express');
-const {resolvers} = require('./Data/Resolvers/Resolvers');
-const typeDefs = require('./Data/Schema/master.graphql');
+import {ApolloServer} from 'apollo-server-express';
+import {resolvers} from './Data/Resolvers/Resolvers';
+import typeDefs from './Data/Schema/master.graphql';
 
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
 const app=express();
 
