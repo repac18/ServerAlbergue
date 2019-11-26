@@ -6,8 +6,9 @@
   "scripts": {
     "start:linux": "rm -rf ./node_modules/.cache/babel-loader && nodemon index.js  --exec babel-node --presets babel-preset-env",
     "start:windows": "rimraf ./node_modules/.cache/babel-loader && nodemon index.js  --exec babel-node --presets babel-preset-env",
+	"start:build":"index.js",
      "test": "react-scripts test --env=jsdom",
-    "start": "npm run start:windows",
+    "start": "npm run start:build",
 	"heroku-postbuild": "cd cliente && npm install --only=dev && npm install && npm run build"
   },
   "author": "",
