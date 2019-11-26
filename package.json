@@ -6,9 +6,10 @@
   "scripts": {
     "start:linux": "rm -rf ./node_modules/.cache/babel-loader && nodemon index.js  --exec babel-node --presets babel-preset-env",
     "start:windows": "rimraf ./node_modules/.cache/babel-loader && nodemon index.js  --exec babel-node --presets babel-preset-env",
-    "start:build": "nodemon index.js --exec babel-node --presets babel-preset-env",
+    "start:build": "node index-compiled.js",
     "test": "react-scripts test --env=jsdom",
     "start": "npm run start:build",
+	"build" : "babel index.js --out-file index-compiled.js",
     "heroku-postbuild": "cd cliente && npm install --only=dev && npm install && npm run build"
   },
   "author": "",
