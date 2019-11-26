@@ -11,7 +11,7 @@ import jwt from 'jsonwebtoken';
 
 const app=express();
 
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, 'cliente/build')));
 
 
 const server = new ApolloServer({
@@ -41,7 +41,7 @@ const server = new ApolloServer({
   });
   
   app.get('*', (req,res) =>{
-    res.sendFile(path.join(__dirname+'/client/build/index.html'));
+    res.sendFile(path.join(__dirname+'/cliente/build/index.html'));
 });
   
 
