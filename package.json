@@ -9,11 +9,12 @@
     "start:build": "node index-compiled.js",
     "test": "react-scripts test --env=jsdom",
     "start": "npm run start:build",
-	"build" : "babel index.js --out-file index-compiled.js"
+    "build": "babel index.js --out-file index-compiled.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/polyfill": "^7.7.0",
     "F": "0.0.4",
     "apollo-server-express": "^2.9.0",
     "babel-plugin-import-graphql": "^2.7.0",

@@ -1,9 +1,9 @@
-import {Mutation} from './mutations';
-import {Query} from './Querys';
 import {types} from './Types';
+import {Mutation}     from './Mutations';
+import {Query}        from './Querys';
 
-export const resolvers={
-	Mutation,
-	Query,
-	...types
+export const resolvers = {
+  Mutation,
+  Query,
+  ...types
 };
