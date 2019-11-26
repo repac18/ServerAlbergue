@@ -4,8 +4,8 @@ import path from 'path';
 // graphql
 
 import {ApolloServer} from 'apollo-server-express';
-import {resolvers} from './Data/Resolvers/Resolvers';
-import typeDefs from './Data/Schema/master.graphql';
+import {resolvers} from 'Data/Resolvers/Resolvers';
+import typeDefs from 'Data/Schema/master.graphql';
 
 import jwt from 'jsonwebtoken';
 

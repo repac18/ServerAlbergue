@@ -14,7 +14,7 @@ var _path2 = _interopRequireDefault(_path);
 
 var _apolloServerExpress = require('apollo-server-express');
 
-var _Resolvers = require('./Data/Resolvers/Resolvers');
+var _Resolvers = require('Data/Resolvers/Resolvers');
 
 var _jsonwebtoken = require('jsonwebtoken');
 
