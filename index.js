@@ -1,13 +1,13 @@
-const express = requiere('express');
-const cors = requiere('cors');
-const path = requiere('path');
+const express = require('express');
+const cors = require('cors');
+const path = require('path');
 // graphql
 
-const ApolloServer = requiere('apollo-server-express');
-const resolvers = requiere('./Data/Resolvers/Resolvers');
-const typeDefs = requiere('./Data/Schema/master.graphql');
+const {ApolloServer} = require('apollo-server-express');
+const resolvers = require('./Data/Resolvers/Resolvers');
+const typeDefs = require('./Data/Schema/master.graphql');
 
-const jwt = requiere'jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 const app=express();
 
