@@ -12,7 +12,7 @@ import ApolloClient, {InMemoryCache} from 'apollo-boost';
 import {ApolloProvider}              from 'react-apollo';
 
 const client = new ApolloClient ({
-                                   uri:          '/graphql',
+                                   uri:          'http://coatepeque.website/graphql',
                                    // enviar token
                                    fetchOptions: { //se almacena durante todo el tiempo, se ejecuta una sola vez
                                      credentials: 'include'
