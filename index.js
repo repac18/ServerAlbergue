@@ -4,7 +4,7 @@ const path = require('path');
 // graphql
 
 const {ApolloServer} = require('apollo-server-express');
-const resolvers = require('./Data/Resolvers/Resolvers');
+const {resolvers} = require('./Data/Resolvers/Resolvers');
 const typeDefs = require('./Data/Schema/master.graphql');
 
 const jwt = require('jsonwebtoken');
