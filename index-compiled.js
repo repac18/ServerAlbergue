@@ -1,7 +1,5 @@
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _express = require('express');
 
 var _express2 = _interopRequireDefault(_express);
@@ -305,609 +303,1921 @@ var usuarios = (0, _mongoose.model)('usuarios', usuariosSchema);
 //
 
 
-var types = {
-  Usuarios: {
-    Rol: function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(_ref2) {
-        var _Rol = _ref2.Rol;
-        var ids, RolesDate;
+//
+
+
+//
+
+
+//Generando token
+
+_dotenv2.default.config({ path: 'variables.env' });
+var resolvers = {
+  Query: {
+    getparametros: function getparametros(root, _ref) {
+      var limit = _ref.limit,
+          Offset = _ref.Offset;
+
+      return new Promise(function (resolve, object) {
+        parametros.find({ Eliminado: 0 }, function (error, parametros) {
+          if (error) (0, _assert.rejects)(error);else resolve(parametros);
+        }).limit(limit).skip(Offset);
+      });
+    },
+    getParametro: function getParametro(root, _ref2) {
+      var id = _ref2.id;
+
+      return new Promise(function (resolve, object) {
+        parametros.findById(id, function (error, parametro) {
+          if (error) (0, _assert.rejects)(error);else resolve(parametro);
+        });
+      });
+    },
+    getConfiguraciones: function getConfiguraciones(root, _ref3) {
+      var limit = _ref3.limit,
+          Offset = _ref3.Offset;
+
+      return new Promise(function (resolve, object) {
+        configuraciones.find({ Eliminado: 0 }, function (error, configuraciones) {
+          if (error) (0, _assert.rejects)(error);else resolve(configuraciones);
+        }).limit(limit).skip(Offset);
+      });
+    },
+    getConfiguracion: function getConfiguracion(root, _ref4) {
+      var id = _ref4.id;
+
+      return new Promise(function (resolve, object) {
+        configuraciones.findById(id, function (error, configuracion) {
+          if (error) (0, _assert.rejects)(error);else resolve(configuracion);
+        });
+      });
+    },
+    getListaDeValores: function getListaDeValores(root, _ref5) {
+      var limit = _ref5.limit,
+          Offset = _ref5.Offset;
+
+      return new Promise(function (resolve, object) {
+        ListaDeValores.find({ Eliminado: 0 }, function (error, ListaDeValores) {
+          if (error) (0, _assert.rejects)(error);else resolve(ListaDeValores);
+        }).limit(limit).skip(Offset);
+      });
+    },
+    getListaDeValor: function getListaDeValor(root, _ref6) {
+      var id = _ref6.id;
+
+      return new Promise(function (resolve, object) {
+        ListaDeValores.findById(id, function (error, ListaDeValor) {
+          if (error) (0, _assert.rejects)(error);else resolve(ListaDeValor);
+        });
+      });
+    },
+
+    getAsignacionClientes: function getAsignacionClientes(root, _ref7) {
+      var limit = _ref7.limit,
+          Offset = _ref7.Offset;
+
+      return new Promise(function (resolve, object) {
+        AsignacionCliente.find({ Eliminado: 0 }, function (error, AsignacionClien) {
+          if (error) (0, _assert.rejects)(error);else resolve(AsignacionClien);
+        }).limit(limit).skip(Offset);
+      });
+    },
+    getAsignacionCliente: function getAsignacionCliente(root, _ref8) {
+      var id = _ref8.id;
+
+      return new Promise(function (resolve, object) {
+        AsignacionCliente.findById(id, function (error, AsignacionClien) {
+          if (error) (0, _assert.rejects)(error);else resolve(AsignacionClien);
+        });
+      });
+    },
+    getclientes: function getclientes(root, _ref9) {
+      var limit = _ref9.limit,
+          Offset = _ref9.Offset;
+
+      return new Promise(function (resolve, object) {
+        clientes.find({ Eliminado: 0 }, function (error, clientes) {
+          if (error) (0, _assert.rejects)(error);else resolve(clientes);
+        }).limit(limit).skip(Offset);
+      });
+    },
+    getCliente: function getCliente(root, _ref10) {
+      var id = _ref10.id;
+
+      return new Promise(function (resolve, object) {
+        clientes.findById(id, function (error, cliente) {
+          if (error) (0, _assert.rejects)(error);else resolve(cliente);
+        });
+      });
+    },
+    getresponsables: function getresponsables(root, _ref11) {
+      var limit = _ref11.limit,
+          Offset = _ref11.Offset;
+
+      return new Promise(function (resolve, object) {
+        clientes.find({ Eliminado: 0, Responsable: 1 }, function (error, clientes) {
+          if (error) (0, _assert.rejects)(error);else resolve(clientes);
+        }).limit(limit).skip(Offset);
+      });
+    },
+    getResponsable: function getResponsable(root, _ref12) {
+      var id = _ref12.id;
+
+      return new Promise(function (resolve, object) {
+        clientes.findById(id, function (error, cliente) {
+          if (error) (0, _assert.rejects)(error);else resolve(cliente);
+        });
+      });
+    },
+
+    getedificios: function getedificios(root, _ref13) {
+      var limit = _ref13.limit,
+          Offset = _ref13.Offset;
+
+      return new Promise(function (resolve, object) {
+        edificio.find({ Eliminado: 0 }, function (error, edificio) {
+          if (error) (0, _assert.rejects)(error);else resolve(edificio);
+        }).limit(limit).skip(Offset);
+      });
+    },
+    getedificio: function getedificio(root, _ref14) {
+      var id = _ref14.id;
+
+      return new Promise(function (resolve, object) {
+        edificio.findById(id, function (error, edificio) {
+          if (error) (0, _assert.rejects)(error);else resolve(edificio);
+        });
+      });
+    },
+    getbitacoras: function getbitacoras(root, _ref15) {
+      var limit = _ref15.limit,
+          Offset = _ref15.Offset;
+
+      return new Promise(function (resolve, object) {
+        bitacora.find({}, function (error, bitacora) {
+          if (error) (0, _assert.rejects)(error);else resolve(bitacora);
+        }).limit(limit).skip(Offset);
+      });
+    },
+    getbitacora: function getbitacora(root, _ref16) {
+      var id = _ref16.id;
+
+      return new Promise(function (resolve, object) {
+        bitacora.findById(id, function (error, bitacora) {
+          if (error) (0, _assert.rejects)(error);else resolve(bitacora);
+        });
+      });
+    },
+    getbitacoraSesiones: function getbitacoraSesiones(root, _ref17) {
+      var limit = _ref17.limit,
+          Offset = _ref17.Offset;
+
+      return new Promise(function (resolve, object) {
+        bitacoraSesion.find({}, function (error, bitacoraSesion) {
+          if (error) (0, _assert.rejects)(error);else resolve(bitacoraSesion);
+        }).limit(limit).skip(Offset);
+      });
+    },
+    getbitacoraSesion: function getbitacoraSesion(root, _ref18) {
+      var id = _ref18.id;
+
+      return new Promise(function (resolve, object) {
+        bitacoraSesion.findById(id, function (error, bitacoraSesion) {
+          if (error) (0, _assert.rejects)(error);else resolve(bitacoraSesion);
+        });
+      });
+    },
+    getpacientes: function getpacientes(root, _ref19) {
+      var limit = _ref19.limit,
+          Offset = _ref19.Offset;
+
+      return new Promise(function (resolve, object) {
+        pacientes.find({ Eliminado: 0 }, function (error, pacientes) {
+          if (error) (0, _assert.rejects)(error);else resolve(pacientes);
+        }).limit(limit).skip(Offset);
+      });
+    },
+    getpaciente: function getpaciente(root, _ref20) {
+      var id = _ref20.id;
+
+      return new Promise(function (resolve, object) {
+        pacientes.findById(id, function (error, paciente) {
+          if (error) (0, _assert.rejects)(error);else resolve(paciente);
+        });
+      });
+    },
+    getHospitales: function getHospitales(root, _ref21) {
+      var limit = _ref21.limit,
+          Offset = _ref21.Offset;
+
+      return new Promise(function (resolve, object) {
+        hospital.find({ Eliminado: 0 }, function (error, hospital) {
+          if (error) (0, _assert.rejects)(error);else resolve(hospital);
+        }).limit(limit).skip(Offset);
+      });
+    },
+    getHospital: function getHospital(root, _ref22) {
+      var id = _ref22.id;
+
+      return new Promise(function (resolve, object) {
+        hospital.findById(id, function (error, hospital) {
+          if (error) (0, _assert.rejects)(error);else resolve(hospital);
+        });
+      });
+    },
+    getproductos: function getproductos(root, _ref23) {
+      var limit = _ref23.limit,
+          Offset = _ref23.Offset;
+
+      return new Promise(function (resolve, object) {
+        productos.find({ Eliminado: 0 }, function (error, productos) {
+          if (error) (0, _assert.rejects)(error);else resolve(productos);
+        }).limit(limit).skip(Offset);
+      });
+    },
+    getproducto: function getproducto(root, _ref24) {
+      var id = _ref24.id;
+
+      return new Promise(function (resolve, object) {
+        productos.findById(id, function (error, producto) {
+          if (error) (0, _assert.rejects)(error);else resolve(producto);
+        });
+      });
+    },
+    gethistorialProductos: function gethistorialProductos(root, _ref25) {
+      var limit = _ref25.limit,
+          Offset = _ref25.Offset;
+
+      return new Promise(function (resolve, object) {
+        historialProductos.find({}, function (error, historialProductos) {
+          if (error) (0, _assert.rejects)(error);else resolve(historialProductos);
+        }).limit(limit).skip(Offset);
+      });
+    },
+    gethistorialProducto: function gethistorialProducto(root, _ref26) {
+      var id = _ref26.id;
+
+      return new Promise(function (resolve, object) {
+        historialProductos.findById(id, function (error, historialProducto) {
+          if (error) (0, _assert.rejects)(error);else resolve(historialProducto);
+        });
+      });
+    },
+    getentradaSalidaInventarios: function getentradaSalidaInventarios(root, _ref27) {
+      var limit = _ref27.limit,
+          Offset = _ref27.Offset;
+
+      return new Promise(function (resolve, object) {
+        entradaSalidaInventario.find({}, function (error, entradaSalidaInventario) {
+          if (error) (0, _assert.rejects)(error);else resolve(entradaSalidaInventario);
+        }).limit(limit).skip(Offset);
+      });
+    },
+    getentradaSalidaInventario: function getentradaSalidaInventario(root, _ref28) {
+      var id = _ref28.id;
+
+      return new Promise(function (resolve, object) {
+        entradaSalidaInventario.findById(id, function (error, entradaSalidaInventario) {
+          if (error) (0, _assert.rejects)(error);else resolve(entradaSalidaInventario);
+        });
+      });
+    },
+    getdonaciones: function getdonaciones(root, _ref29) {
+      var limit = _ref29.limit,
+          Offset = _ref29.Offset;
+
+      return new Promise(function (resolve, object) {
+        donacion.find({}, function (error, donacion) {
+          if (error) (0, _assert.rejects)(error);else resolve(donacion);
+        }).limit(limit).skip(Offset);
+      });
+    },
+    getdonacion: function getdonacion(root, _ref30) {
+      var id = _ref30.id;
+
+      return new Promise(function (resolve, object) {
+        donacion.findById(id, function (error, donacion) {
+          if (error) (0, _assert.rejects)(error);else resolve(donacion);
+        });
+      });
+    },
+    getcajaChicas: function getcajaChicas(root, _ref31) {
+      var limit = _ref31.limit,
+          Offset = _ref31.Offset;
+
+      return new Promise(function (resolve, object) {
+        cajaChica.find({}, function (error, cajaChica) {
+          if (error) (0, _assert.rejects)(error);else resolve(cajaChica);
+        }).limit(limit).skip(Offset);
+      });
+    },
+    getcajaChica: function getcajaChica(root, _ref32) {
+      var id = _ref32.id;
+
+      return new Promise(function (resolve, object) {
+        cajaChica.findById(id, function (error, cajaChica) {
+          if (error) (0, _assert.rejects)(error);else resolve(cajaChica);
+        });
+      });
+    },
+    getentradaSalidaCajaChicas: function getentradaSalidaCajaChicas(root, _ref33) {
+      var limit = _ref33.limit,
+          Offset = _ref33.Offset;
+
+      return new Promise(function (resolve, object) {
+        entradaSalidaCajaChica.find({}, function (error, entradaSalidaCajaChica) {
+          if (error) (0, _assert.rejects)(error);else resolve(entradaSalidaCajaChica);
+        }).limit(limit).skip(Offset);
+      });
+    },
+    getentradaSalidaCajaChica: function getentradaSalidaCajaChica(root, _ref34) {
+      var id = _ref34.id;
+
+      return new Promise(function (resolve, object) {
+        entradaSalidaCajaChica.findById(id, function (error, entradaSalidaCajaChica) {
+          if (error) (0, _assert.rejects)(error);else resolve(entradaSalidaCajaChica);
+        });
+      });
+    },
+    gethistorialCajaChicas: function gethistorialCajaChicas(root, _ref35) {
+      var limit = _ref35.limit,
+          Offset = _ref35.Offset;
+
+      return new Promise(function (resolve, object) {
+        historialCajaChica.find({}, function (error, historialCajaChica) {
+          if (error) (0, _assert.rejects)(error);else resolve(historialCajaChica);
+        }).limit(limit).skip(Offset);
+      });
+    },
+    gethistorialCajaChica: function gethistorialCajaChica(root, _ref36) {
+      var id = _ref36.id;
+
+      return new Promise(function (resolve, object) {
+        historialCajaChica.findById(id, function (error, historialCajaChica) {
+          if (error) (0, _assert.rejects)(error);else resolve(historialCajaChica);
+        });
+      });
+    },
+    getusuarios: function getusuarios(root, _ref37) {
+      var limit = _ref37.limit,
+          Offset = _ref37.Offset;
+
+      return new Promise(function (resolve, object) {
+        usuarios.find({ Eliminado: 0 }, function (error, usuario) {
+          if (error) (0, _assert.rejects)(error);else resolve(usuario);
+        }).limit(limit).skip(Offset);
+      });
+    },
+    getasignacionpacientes: function getasignacionpacientes(root, _ref38) {
+      var limit = _ref38.limit,
+          Offset = _ref38.Offset;
+
+      return new Promise(function (resolve, object) {
+        asignarPaciente.find({ Estado: 'ASIGNADO' }, function (error, data) {
+          if (error) (0, _assert.rejects)(error);else resolve(data);
+        }).limit(limit).skip(Offset);
+      });
+    },
+    getasignacionpaciente: function getasignacionpaciente(root, _ref39) {
+      var id = _ref39.id;
+
+      return new Promise(function (resolve, object) {
+        asignarPaciente.findById(id, function (error, data) {
+          if (error) (0, _assert.rejects)(error);else resolve(data);
+        });
+      });
+    },
+    getusuario: function getusuario(root, _ref40) {
+      var id = _ref40.id;
+
+      return new Promise(function (resolve, object) {
+        usuarios.findById(id, function (error, usuario) {
+          if (error) (0, _assert.rejects)(error);else resolve(usuario);
+        });
+      });
+    },
+
+    obtenerUsuario: function obtenerUsuario(root, arg, _ref41) {
+      var usuarioActual = _ref41.usuarioActual;
+
+
+      if (!usuarioActual) {
+        return null;
+      }
+
+      //obtener el usuariio actual del request del JWT verificado
+      var usuario = usuarios.findOne({ Usuario: usuarioActual.Usuario, Eliminado: 0 });
+
+      if (!usuario) {
+        return null;
+      }
+      return usuario;
+    },
+
+    getroles: function getroles(root, _ref42) {
+      var limit = _ref42.limit,
+          Offset = _ref42.Offset;
+
+      return new Promise(function (resolve, object) {
+        roles.find({ Eliminado: 0 }, function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve(resultado);
+        }).limit(limit).skip(Offset);
+      });
+    },
+    getrol: function getrol(root, _ref43) {
+      var id = _ref43.id;
+
+      return new Promise(function (resolve, object) {
+        roles.findById(id, function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve(resultado);
+        });
+      });
+    },
+    getpermisos: function getpermisos(root, _ref44) {
+      var limit = _ref44.limit,
+          Offset = _ref44.Offset;
+
+      return new Promise(function (resolve, object) {
+        permisos.find({ Eliminado: 0 }, function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve(resultado);
+        }).limit(limit).skip(Offset);
+      });
+    },
+    getpermiso: function getpermiso(root, _ref45) {
+      var id = _ref45.id;
+
+      return new Promise(function (resolve, object) {
+        permisos.findById(id, function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve(resultado);
+        });
+      });
+    },
+    reportesasigClier1: function reportesasigClier1(root, _ref46) {
+      var id = _ref46.id;
+
+      return new Promise(function (resolve, object) {
+        AsignacionCliente.aggregate([{
+          $match: { Eliminado: 0 }
+        }, {
+          $group: {
+            _id: "$Edificio",
+            Total: { $sum: 1 }
+          }
+        }], function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve(resultado);
+        });
+      });
+    },
+    reportesasigClier2: function reportesasigClier2(root, _ref47) {
+      var id = _ref47.id;
+
+      return new Promise(function (resolve, object) {
+        AsignacionCliente.aggregate([{
+          $match: { Eliminado: 1 }
+        }, {
+          $group: {
+            _id: "$Edificio",
+            Total: { $sum: 1 }
+          }
+        }], function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve(resultado);
+        });
+      });
+    },
+    reportesasigpas1: function reportesasigpas1(root, _ref48) {
+      var id = _ref48.id;
+
+      return new Promise(function (resolve, object) {
+        asignarPaciente.aggregate([{
+          $group: {
+            _id: '$Fecha',
+            Total: {
+              $sum: 1
+            }
+
+          }
+        }], function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve(resultado);
+        });
+      });
+    },
+    reportesasigpas2: function reportesasigpas2(root, _ref49) {
+      var id = _ref49.id;
+
+      return new Promise(function (resolve, object) {
+        asignarPaciente.aggregate([{
+          $group: {
+            _id: '$Clientes',
+            Total: {
+              $sum: 1
+            }
+          }
+        }], function (error, resultado) {
+
+          if (error) (0, _assert.rejects)(error);else resolve(resultado);
+        });
+      });
+    },
+    reportesproducr1: function reportesproducr1(root, _ref50) {
+      var id = _ref50.id;
+
+      return new Promise(function (resolve, object) {
+        productos.aggregate([{
+          $group: {
+            _id: "$Nombre",
+            Total: { $sum: "$Cantidad" }
+          }
+        }], function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve(resultado);
+        });
+      });
+    },
+    reportesdonacior1: function reportesdonacior1(root, _ref51) {
+      var id = _ref51.id;
+
+      return new Promise(function (resolve, object) {
+        donacion.aggregate([{
+          $group: {
+            _id: "$Fecha",
+            Total: { $sum: 1 }
+          }
+        }], function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve(resultado);
+        });
+      });
+    }
+
+  },
+
+  Mutation: {
+    crearParametros: function crearParametros(root, _ref52) {
+      var input = _ref52.input;
+
+      var Save_Data = new parametros({
+        Nombre: input.Nombre,
+        Valor: input.Valor,
+        Eliminado: 0
+      });
+      Save_Data.id = Save_Data._id;
+
+      return new Promise(function (resolve, object) {
+        Save_Data.save(function (error) {
+          if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
+        });
+      });
+    },
+    crearConfiguracion: function crearConfiguracion(root, _ref53) {
+      var input = _ref53.input;
+
+      var Save_Data = new configuraciones({
+        Nombre: input.Nombre,
+        Valor: input.Valor,
+        Eliminado: 0
+      });
+      Save_Data.id = Save_Data._id;
+
+      return new Promise(function (resolve, object) {
+        Save_Data.save(function (error) {
+          if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
+        });
+      });
+    },
+    crearListaDeValores: function crearListaDeValores(root, _ref54) {
+      var input = _ref54.input;
+
+      var Save_Data = new ListaDeValores({
+        Nombre: input.Nombre,
+        Valor: input.Valor,
+        Eliminado: 0
+      });
+      Save_Data.id = Save_Data._id;
+
+      return new Promise(function (resolve, object) {
+        Save_Data.save(function (error) {
+          if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
+        });
+      });
+    },
+    crearClientes: function crearClientes(root, _ref55) {
+      var input = _ref55.input;
+
+      var Save_Data = new clientes({
+        Nombre: input.Nombre,
+        Apellido: input.Apellido,
+        Edad: input.Edad,
+        Direccion: input.Direccion,
+        Dpi: input.Dpi,
+        Nit: input.Nit,
+        Sexo: input.Sexo,
+        Municipio: input.Municipio,
+        Departamento: input.Departamento,
+        Responsable: input.Responsable,
+        Eliminado: 0
+      });
+      Save_Data.id = Save_Data._id;
+
+      return new Promise(function (resolve, object) {
+        Save_Data.save(function (error) {
+          if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
+        });
+      });
+    },
+
+    crearAsignacionCliente: function crearAsignacionCliente(root, _ref56) {
+      var input = _ref56.input;
+
+      var Save_Data = new AsignacionCliente({
+        Edificio: input.Edificio,
+        Nivel: input.Nivel,
+        Habitacion: input.Habitacion,
+        FechaIngreso: input.FechaIngreso,
+        FechaSalida: input.FechaSalida,
+        Cliente: input.Cliente,
+        Eliminado: 0
+      });
+      Save_Data.id = Save_Data._id;
+
+      for (var index = 0; index < input.Edificios.Estructura.length; index++) {
+        for (var index1 = 0; index1 < input.Edificios.Estructura[index].Habitaciones.length; index1++) {
+          if (input.Edificios.Estructura[index].Habitaciones[index1].Nombre == input.Habitacion) {
+            input.Edificios.Estructura[index].Habitaciones[index1].Ocupados++;
+          }
+        }
+      }
+
+      return new Promise(function (resolve, object) {
+
+        console.log(input.Edificios.id);
+
+        edificio.findOneAndUpdate({ _id: ObjectId(input.Edificios.id) }, input.Edificios, { new: true }, function (error, edificio) {
+          if (error) (0, _assert.rejects)(error);else resolve(edificio);
+        });
+
+        Save_Data.save(function (error) {
+          if (error) (0, _assert.rejects)(error);else resolve("Cliente Asignado");
+        });
+      });
+    },
+    crearResponsables: function crearResponsables(root, _ref57) {
+      var input = _ref57.input;
+
+      var Save_Data = new clientes({
+        Nombre: input.Nombre,
+        Apellido: input.Apellido,
+        Edad: input.Edad,
+        Direccion: input.Direccion,
+        Dpi: input.Dpi,
+        Nit: input.Nit,
+        Sexo: input.Sexo,
+        Municipio: input.Municipio,
+        Departamento: input.Departamento,
+        Responsable: 1,
+        Eliminado: 0
+      });
+      Save_Data.id = Save_Data._id;
+
+      return new Promise(function (resolve, object) {
+        Save_Data.save(function (error) {
+          if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
+        });
+      });
+    },
+
+    crearEdificio: function crearEdificio(root, _ref58) {
+      var input = _ref58.input;
+
+      var Save_Data = new edificio({
+        Nombre: input.Nombre,
+        Latitud: input.Latitud,
+        Longitud: input.Longitud,
+        Estructura: input.Estructura,
+        Eliminado: 0
+      });
+      Save_Data.id = Save_Data._id;
+
+      return new Promise(function (resolve, object) {
+        Save_Data.save(function (error) {
+          if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
+        });
+      });
+    },
+    crearBitacora: function crearBitacora(root, _ref59) {
+      var input = _ref59.input;
+
+      var Save_Data = new bitacora({
+        Evento: input.Evento,
+        Documento: input.Documento,
+        UsuarioId: input.UsuarioId,
+        Fecha: input.Fecha,
+        Pagina: input.Pagina,
+        Data: input.Data
+      });
+      Save_Data.id = Save_Data._id;
+
+      return new Promise(function (resolve, object) {
+        Save_Data.save(function (error) {
+          if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
+        });
+      });
+    },
+    crearBitacoraSesion: function crearBitacoraSesion(root, _ref60) {
+      var input = _ref60.input;
+
+      var Save_Data = new bitacoraSesion({
+        UsuarioId: input.UsuarioId,
+        FechaInicio: input.FechaInicio,
+        FechaCierre: input.FechaCierre
+      });
+      Save_Data.id = Save_Data._id;
+
+      return new Promise(function (resolve, object) {
+        Save_Data.save(function (error) {
+          if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
+        });
+      });
+    },
+    crearPacientes: function crearPacientes(root, _ref61) {
+      var input = _ref61.input;
+
+      var Save_Data = new pacientes({
+        Nombre: input.Nombre,
+        Apellido: input.Apellido,
+        Edad: input.Edad,
+        Direccion: input.Direccion,
+        Dpi: input.Dpi,
+        Nit: input.Nit,
+        Sexo: input.Sexo,
+        Municipio: input.Municipio,
+        Departamento: input.Departamento,
+        Estado: input.Estado,
+        ClienteId: input.ClienteId,
+        Hospital: input.hospital,
+        Sala: input.Sala,
+        Habitacion: input.Habitacion,
+        FechaIngreso: input.FechaIngreso,
+        FechaSalida: input.FechaSalida,
+        Eliminado: 0
+      });
+      Save_Data.id = Save_Data._id;
+
+      return new Promise(function (resolve, object) {
+        Save_Data.save(function (error) {
+          if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
+        });
+      });
+    },
+    crearHospital: function crearHospital(root, _ref62) {
+      var input = _ref62.input;
+
+      var Save_Data = new hospital({
+        Nombre: input.Nombre,
+        Descripcion: input.Descripcion,
+        Latitud: input.Latitud,
+        Longitud: input.Longitud,
+        Eliminado: 0
+      });
+      Save_Data.id = Save_Data._id;
+
+      return new Promise(function (resolve, object) {
+        Save_Data.save(function (error) {
+          if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
+        });
+      });
+    },
+    crearProductos: function crearProductos(root, _ref63) {
+      var input = _ref63.input;
+
+      var Save_Data = new productos({
+        Nombre: input.Nombre,
+        Descripcion: input.Descripcion,
+        SKU: input.SKU,
+        CodigoBarra: input.CodigoBarra,
+        Clasificacion: input.Clasificacion,
+        Tipo: input.Tipo,
+        Precio: input.Precio,
+        Cantidad: input.Cantidad,
+        Eliminado: 0
+      });
+      Save_Data.id = Save_Data._id;
+
+      return new Promise(function (resolve, object) {
+        Save_Data.save(function (error) {
+          if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
+        });
+      });
+    },
+    crearHistorialProductos: function crearHistorialProductos(root, _ref64) {
+      var input = _ref64.input;
+
+      var Save_Data = new historialProductos({
+        ProductoId: input.ProductoId,
+        Fecha: input.Fecha,
+        Cantidad: input.Cantidad,
+        Precio: input.Precio
+      });
+      Save_Data.id = Save_Data._id;
+
+      return new Promise(function (resolve, object) {
+        Save_Data.save(function (error) {
+          if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
+        });
+      });
+    },
+    crearEntradaSalidaInventario: function crearEntradaSalidaInventario(root, _ref65) {
+      var input = _ref65.input;
+
+      var Save_Data = new entradaSalidaInventario({
+        DonacionId: input.DonacionId,
+        UsuarioId: input.UsuarioId,
+        Productos: input.Productos,
+        Responsable: input.Responsable,
+        Tipo: input.Tipo,
+        Fecha: input.Fecha,
+        Estado: input.Estado,
+        Total: input.Total
+      });
+      Save_Data.id = Save_Data._id;
+
+      return new Promise(function (resolve, object) {
+        var Estado = input.Estado;
+        var Tipo = input.Tipo;
+
+
+        if (Estado === 'APROBADO') {
+          var instruccion = void 0;
+          if (Tipo === 1) {
+            instruccion = '+';
+          } else if (Tipo === 2) {
+            instruccion = '-';
+          }
+
+          Save_Data.Productos.forEach(function (producto) {
+            console.log(producto);
+            productos.updateOne({ _id: ObjectId(producto.id) }, {
+              $inc: { Cantidad: '' + instruccion + producto.Cantidad }
+            }, function (error) {
+              if (error) return new Error(error);
+            });
+          });
+        }
+
+        Save_Data.save(function (error) {
+          if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
+        });
+      });
+    },
+    crearAsignacionPacientes: function crearAsignacionPacientes(root, _ref66) {
+      var input = _ref66.input;
+
+      var Save_Data = new asignarPaciente({
+        Hospitales: input.Hospitales,
+        Clientes: input.Clientes,
+        Pacientes: input.Pacientes,
+        Fecha: input.Fecha,
+        FechaSalida: input.FechaSalida,
+        Eliminado: 0,
+        Estado: input.Estado,
+        Observaciones: input.Observaciones
+      });
+      Save_Data.id = Save_Data._id;
+
+      console.log(Save_Data.Eliminado);
+      return new Promise(function (resolve, object) {
+        Save_Data.save(function (error) {
+          if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
+        });
+      });
+    },
+    crearDonacion: function crearDonacion(root, _ref67) {
+      var input = _ref67.input;
+
+      var Save_Data = new donacion({
+        UsuarioId: input.UsuarioId,
+        Responsable: input.Responsable,
+        Donante: input.Donante,
+        Tipo: input.Tipo,
+        Fecha: input.Fecha,
+        Estado: input.Estado,
+        Cantidad: input.Cantidad
+      });
+      Save_Data.id = Save_Data._id;
+      return new Promise(function (resolve, object) {
+        var instruccion = '+';
+
+        if (input.Tipo === 1) {
+          cajaChica.updateOne({}, {
+            $inc: { Cantidad: '' + instruccion + input.Cantidad }
+          }, function (error) {
+            if (error) return new Error(error);
+          });
+        }
+        Save_Data.save(function (error) {
+          if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
+        });
+      });
+    },
+    crearCajaChica: function crearCajaChica(root, _ref68) {
+      var input = _ref68.input;
+
+      var Save_Data = new cajaChica({
+        Cantidad: input.Cantidad,
+        Fecha: input.Fecha
+      });
+      Save_Data.id = Save_Data._id;
+
+      return new Promise(function (resolve, object) {
+        Save_Data.save(function (error) {
+          if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
+        });
+      });
+    },
+    crearEntradaSalidaCajaChica: function crearEntradaSalidaCajaChica(root, _ref69) {
+      var input = _ref69.input;
+
+      var Save_Data = new entradaSalidaCajaChica({
+        DonacionId: input.DonacionId,
+        UsuarioId: input.UsuarioId,
+        Responsable: input.Responsable,
+        Cantidad: input.Cantidad,
+        Tipo: input.Tipo,
+        Fecha: input.Fecha,
+        Estado: input.Estado
+      });
+      Save_Data.id = Save_Data._id;
+
+      return new Promise(function (resolve, object) {
+        var Estado = input.Estado;
+        var Tipo = input.Tipo;
+        var Cantidad = input.Cantidad;
+
+
+        if (Estado === 'APROBADO') {
+          var instruccion = void 0;
+          if (Tipo === 1) {
+            instruccion = '+';
+          } else if (Tipo === 2) {
+            instruccion = '-';
+          }
+
+          cajaChica.updateOne({}, {
+            $inc: { Cantidad: '' + instruccion + Cantidad }
+          }, function (error) {
+            if (error) return new Error(error);
+          });
+        }
+
+        Save_Data.save(function (error) {
+          if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
+        });
+      });
+    },
+    crearHistorialCajaChica: function crearHistorialCajaChica(root, _ref70) {
+      var input = _ref70.input;
+
+      var Save_Data = new historialCajaChica({
+        Cantidad: input.Cantidad,
+        Fecha: input.Fecha
+      });
+      Save_Data.id = Save_Data._id;
+
+      return new Promise(function (resolve, object) {
+        Save_Data.save(function (error) {
+          if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
+        });
+      });
+    },
+    actualizarListaDeValores: function actualizarListaDeValores(root, _ref71) {
+      var input = _ref71.input;
+
+      return new Promise(function (resolve, object) {
+        ListaDeValores.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, lista) {
+          if (error) (0, _assert.rejects)(error);else resolve(lista);
+        });
+      });
+    },
+
+    crearUsuarios: function () {
+      var _ref72 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(root, _ref73) {
+        var input = _ref73.input;
+        var Usuario, existe, Save_Data;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                Usuario = input.Usuario;
+                _context.next = 3;
+                return usuarios.findOne({ Usuario: Usuario });
+
+              case 3:
+                existe = _context.sent;
+
+                if (!existe) {
+                  _context.next = 6;
+                  break;
+                }
+
+                throw new Error('El usuario ya existe');
+
+              case 6:
+                Save_Data = new usuarios({
+                  Usuario: input.Usuario,
+                  Nombre: input.Nombre,
+                  Password: input.Password,
+                  Rol: input.Rol,
+                  Eliminado: 0
+                });
+
+                // return(`El Usuario fue creado con exito`)
+
+                Save_Data.id = Save_Data._id;
+
+                return _context.abrupt('return', new Promise(function (resolve, object) {
+                  Save_Data.save(function (error) {
+                    if (error) (0, _assert.rejects)(error);else resolve('El Usuario fue creado con exito');
+                  });
+                }));
+
+              case 9:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, undefined);
+      }));
+
+      return function crearUsuarios(_x, _x2) {
+        return _ref72.apply(this, arguments);
+      };
+    }(),
+    autenticarUsuario: function () {
+      var _ref74 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(root, _ref75) {
+        var usuario = _ref75.usuario,
+            password = _ref75.password;
+        var nombreUsuario, passwordCorrecto;
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return usuarios.findOne({ Usuario: usuario, Eliminado: 0 });
+
+              case 2:
+                nombreUsuario = _context2.sent;
+
+                if (nombreUsuario) {
+                  _context2.next = 5;
+                  break;
+                }
+
+                throw new Error('Usuario no encontrado');
+
+              case 5:
+                _context2.next = 7;
+                return _bcrypt2.default.compare(password, nombreUsuario.Password);
+
+              case 7:
+                passwordCorrecto = _context2.sent;
+
+                if (passwordCorrecto) {
+                  _context2.next = 10;
+                  break;
+                }
+
+                throw new Error('Password Incorrecto');
+
+              case 10:
+                return _context2.abrupt('return', {
+                  token: crearToken(nombreUsuario, "supersecreto", '1hr')
+                });
+
+              case 11:
+              case 'end':
+                return _context2.stop();
+            }
+          }
+        }, _callee2, undefined);
+      }));
+
+      return function autenticarUsuario(_x3, _x4) {
+        return _ref74.apply(this, arguments);
+      };
+    }(),
+    crearRoles: function () {
+      var _ref76 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(root, _ref77) {
+        var input = _ref77.input;
+        var Nombre, existe, Save_Data;
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                Nombre = input.Nombre;
+                _context3.next = 3;
+                return roles.findOne({ Nombre: Nombre });
+
+              case 3:
+                existe = _context3.sent;
+
+                if (!existe) {
+                  _context3.next = 6;
+                  break;
+                }
+
+                throw new Error('El rol ya existe');
+
+              case 6:
+                Save_Data = new roles({
+                  Nombre: input.Nombre,
+                  Descripcion: input.Descripcion,
+                  Permiso: input.Permiso,
+                  Eliminado: 0
+                });
+
+
+                Save_Data.id = Save_Data._id;
+
+                return _context3.abrupt('return', new Promise(function (resolve, object) {
+                  Save_Data.save(function (error) {
+                    if (error) (0, _assert.rejects)(error);else resolve('El Rol fue creado con exito');
+                  });
+                }));
+
+              case 9:
+              case 'end':
+                return _context3.stop();
+            }
+          }
+        }, _callee3, undefined);
+      }));
+
+      return function crearRoles(_x5, _x6) {
+        return _ref76.apply(this, arguments);
+      };
+    }(),
+
+    AgregarPermisos: function () {
+      var _ref78 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(root, _ref79) {
+        var input = _ref79.input;
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                return _context4.abrupt('return', new Promise(function (resolve, object) {
+                  roles.update({ _id: input.id }, { $set: { Permiso: input.Permiso } }, function (error, usuarios) {
+                    if (error) (0, _assert.rejects)(error);else resolve(usuarios);
+                  });
+                }));
+
+              case 1:
+              case 'end':
+                return _context4.stop();
+            }
+          }
+        }, _callee4, undefined);
+      }));
+
+      return function AgregarPermisos(_x7, _x8) {
+        return _ref78.apply(this, arguments);
+      };
+    }(),
+
+    crearPermisos: function () {
+      var _ref80 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(root, _ref81) {
+        var input = _ref81.input;
+        var Nombre, existe, Save_Data;
+        return regeneratorRuntime.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                Nombre = input.Nombre;
+                _context5.next = 3;
+                return permisos.findOne({ Nombre: Nombre });
+
+              case 3:
+                existe = _context5.sent;
+
+                if (!existe) {
+                  _context5.next = 6;
+                  break;
+                }
+
+                throw new Error('El permiso ya existe');
+
+              case 6:
+                Save_Data = new permisos({
+                  Nombre: input.Nombre,
+                  Descripcion: input.Descripcion,
+                  URL: input.URL,
+                  Menu: input.Menu,
+                  Activo: input.Activo,
+                  Opcion: input.Opcion,
+                  Eliminado: 0
+                });
+
+                Save_Data.id = Save_Data._id;
+
+                return _context5.abrupt('return', new Promise(function (resolve, object) {
+                  Save_Data.save(function (error) {
+                    if (error) (0, _assert.rejects)(error);else resolve('El Permiso fue creado con exito');
+                  });
+                }));
+
+              case 9:
+              case 'end':
+                return _context5.stop();
+            }
+          }
+        }, _callee5, undefined);
+      }));
+
+      return function crearPermisos(_x9, _x10) {
+        return _ref80.apply(this, arguments);
+      };
+    }(),
+
+    actualizarCliente: function actualizarCliente(root, _ref82) {
+      var input = _ref82.input;
+
+      return new Promise(function (resolve, object) {
+        clientes.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, cliente) {
+          if (error) (0, _assert.rejects)(error);else resolve(cliente);
+        });
+      });
+    },
+    actualizarResponsable: function actualizarResponsable(root, _ref83) {
+      var input = _ref83.input;
+
+      return new Promise(function (resolve, object) {
+        clientes.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, cliente) {
+          if (error) (0, _assert.rejects)(error);else resolve(cliente);
+        });
+      });
+    },
+
+    actualizarEdificio: function actualizarEdificio(root, _ref84) {
+      var input = _ref84.input;
+
+      return new Promise(function (resolve, object) {
+        edificio.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, edificio) {
+          if (error) (0, _assert.rejects)(error);else resolve(edificio);
+        });
+      });
+    },
+
+    actualizarBitacora: function actualizarBitacora(root, _ref85) {
+      var input = _ref85.input;
+
+      return new Promise(function (resolve, object) {
+        bitacora.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, bitacora) {
+          if (error) (0, _assert.rejects)(error);else resolve(bitacora);
+        });
+      });
+    },
+
+    actualizarBitacoraSesion: function actualizarBitacoraSesion(root, _ref86) {
+      var input = _ref86.input;
+
+      return new Promise(function (resolve, object) {
+        bitacoraSesion.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, bitacoraS) {
+          if (error) (0, _assert.rejects)(error);else resolve(bitacoraS);
+        });
+      });
+    },
+
+    actualizarPacientes: function actualizarPacientes(root, _ref87) {
+      var input = _ref87.input;
+
+      return new Promise(function (resolve, object) {
+        pacientes.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, pacientes) {
+          if (error) (0, _assert.rejects)(error);else resolve(pacientes);
+        });
+      });
+    },
+
+    actualizarHospital: function actualizarHospital(root, _ref88) {
+      var input = _ref88.input;
+
+      return new Promise(function (resolve, object) {
+        hospital.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, hospital) {
+          if (error) (0, _assert.rejects)(error);else resolve(hospital);
+        });
+      });
+    },
+
+    actualizarProductos: function actualizarProductos(root, _ref89) {
+      var input = _ref89.input;
+
+      return new Promise(function (resolve, object) {
+        productos.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, productos) {
+          if (error) (0, _assert.rejects)(error);else resolve(productos);
+        });
+      });
+    },
+
+    actualizarHistorialProductos: function actualizarHistorialProductos(root, _ref90) {
+      var input = _ref90.input;
+
+      return new Promise(function (resolve, object) {
+        pistorialProductos.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, historialproductos) {
+          if (error) (0, _assert.rejects)(error);else resolve(historialproductos);
+        });
+      });
+    },
+
+    actualizarEntradaSalidaInventario: function actualizarEntradaSalidaInventario(root, _ref91) {
+      var input = _ref91.input;
+
+      return new Promise(function (resolve, object) {
+        var Estado = input.Estado;
+        var Tipo = input.Tipo;
+
+
+        if (Estado === 'APROBADO') {
+          var instruccion = void 0;
+
+          if (Tipo === 1) {
+            instruccion = '+';
+          } else if (Tipo === 2) {
+            instruccion = '-';
+          }
+
+          input.Productos.forEach(function (producto) {
+            productos.updateOne({ _id: ObjectId(producto.id) }, {
+              $inc: { Cantidad: '' + instruccion + producto.Cantidad }
+            }, function (error) {
+              if (error) return new Error(error);
+            });
+          });
+        }
+
+        entradaSalidaInventario.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, esinventario) {
+          if (error) (0, _assert.rejects)(error);else resolve(esinventario);
+        });
+      });
+    },
+
+    actualizarDonacion: function actualizarDonacion(root, _ref92) {
+      var input = _ref92.input;
+
+      return new Promise(function (resolve, object) {
+        donacion.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, donacion) {
+          if (error) (0, _assert.rejects)(error);else resolve(donacion);
+        });
+      });
+    },
+
+    actualizarCajaChica: function actualizarCajaChica(root, _ref93) {
+      var input = _ref93.input;
+
+      return new Promise(function (resolve, object) {
+        cajaChica.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, cajachica) {
+          if (error) (0, _assert.rejects)(error);else resolve(cajachica);
+        });
+      });
+    },
+
+    actualizarEntradaSalidaCajaChica: function actualizarEntradaSalidaCajaChica(root, _ref94) {
+      var input = _ref94.input;
+
+      return new Promise(function (resolve, object) {
+        var Estado = input.Estado;
+        var Tipo = input.Tipo;
+        var Cantidad = input.Cantidad;
+
+
+        if (Estado === 'APROBADO') {
+          var instruccion = void 0;
+          if (Tipo === 1) {
+            instruccion = '+';
+          } else if (Tipo === 2) {
+            instruccion = '-';
+          }
+
+          cajaChica.updateOne({}, {
+            $inc: { Cantidad: '' + instruccion + Cantidad }
+          }, function (error) {
+            if (error) return new Error(error);
+          });
+        }
+
+        entradaSalidaCajaChica.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, escajachica) {
+          if (error) (0, _assert.rejects)(error);else resolve(escajachica);
+        });
+      });
+    },
+
+    actualizarHistorialCajaChica: function actualizarHistorialCajaChica(root, _ref95) {
+      var input = _ref95.input;
+
+      return new Promise(function (resolve, object) {
+        historialCajaChica.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, historialcajachica) {
+          if (error) (0, _assert.rejects)(error);else resolve(historialcajachica);
+        });
+      });
+    },
+
+    actualizarRoles: function actualizarRoles(root, _ref96) {
+      var input = _ref96.input;
+
+      return new Promise(function (resolve, object) {
+        roles.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, rol) {
+          if (error) (0, _assert.rejects)(error);else resolve(rol);
+        });
+      });
+    },
+
+    actualizarPermisos: function actualizarPermisos(root, _ref97) {
+      var input = _ref97.input;
+
+      return new Promise(function (resolve, object) {
+        permisos.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, permisos) {
+          if (error) (0, _assert.rejects)(error);else resolve(permisos);
+        });
+      });
+    },
+
+    actualizarUsuarios: function () {
+      var _ref98 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(root, _ref99) {
+        var input = _ref99.input;
+        var nombreUsuario;
+        return regeneratorRuntime.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.next = 2;
+                return usuarios.findOne({ Password: input.Password });
+
+              case 2:
+                nombreUsuario = _context6.sent;
+
+                if (nombreUsuario) {
+                  _context6.next = 7;
+                  break;
+                }
+
+                _bcrypt2.default.genSalt(10, function (err, salt) {
+                  if (err) return next(err);
+                  _bcrypt2.default.hash(input.Password, salt, function (err, hash) {
+                    if (err) return next(err);
+                    input.Password = hash;
+                    return new Promise(function (resolve, object) {
+                      usuarios.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, usuarios) {
+                        if (error) (0, _assert.rejects)(error);else resolve(usuarios);
+                      });
+                    });
+                  });
+                });
+                _context6.next = 8;
+                break;
+
+              case 7:
+                return _context6.abrupt('return', new Promise(function (resolve, object) {
+                  usuarios.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, usuarios) {
+                    if (error) (0, _assert.rejects)(error);else resolve(usuarios);
+                  });
+                }));
+
+              case 8:
+              case 'end':
+                return _context6.stop();
+            }
+          }
+        }, _callee6, undefined);
+      }));
+
+      return function actualizarUsuarios(_x11, _x12) {
+        return _ref98.apply(this, arguments);
+      };
+    }(),
+
+    eliminarParametros: function eliminarParametros(root, _ref100) {
+      var id = _ref100.id;
+
+      return new Promise(function (resolve, object) {
+        parametros.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el Parametros');
+        });
+      });
+    },
+    eliminarConfiguracion: function eliminarConfiguracion(root, _ref101) {
+      var id = _ref101.id;
+
+      return new Promise(function (resolve, object) {
+        configuracion.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el Configuracion');
+        });
+      });
+    },
+    eliminarListaDeValores: function eliminarListaDeValores(root, _ref102) {
+      var id = _ref102.id;
+
+      return new Promise(function (resolve, object) {
+        ListaDeValores.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el ListaDeValores');
+        });
+      });
+    },
+    eliminarClientes: function eliminarClientes(root, _ref103) {
+      var id = _ref103.id;
+
+      return new Promise(function (resolve, object) {
+        clientes.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el Clientes');
+        });
+      });
+    },
+    eliminarResponsables: function eliminarResponsables(root, _ref104) {
+      var id = _ref104.id;
+
+      return new Promise(function (resolve, object) {
+        clientes.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el Clientes');
+        });
+      });
+    },
+    eliminarEdificio: function eliminarEdificio(root, _ref105) {
+      var id = _ref105.id;
+
+      return new Promise(function (resolve, object) {
+        edificio.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el Edificio');
+        });
+      });
+    },
+    eliminarBitacora: function eliminarBitacora(root, _ref106) {
+      var id = _ref106.id;
+
+      return new Promise(function (resolve, object) {
+        bitacora.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el Bitacora');
+        });
+      });
+    },
+    eliminarBitacoraSesion: function eliminarBitacoraSesion(root, _ref107) {
+      var id = _ref107.id;
+
+      return new Promise(function (resolve, object) {
+        bitacoraSesion.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el BitacoraSesion');
+        });
+      });
+    },
+    eliminarPacientes: function eliminarPacientes(root, _ref108) {
+      var id = _ref108.id;
+
+      return new Promise(function (resolve, object) {
+        pacientes.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el Pacientes');
+        });
+      });
+    },
+    eliminarHospital: function eliminarHospital(root, _ref109) {
+      var id = _ref109.id;
+
+      return new Promise(function (resolve, object) {
+        hospital.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el Hospital');
+        });
+      });
+    },
+    eliminarProductos: function eliminarProductos(root, _ref110) {
+      var id = _ref110.id;
+
+      return new Promise(function (resolve, object) {
+        productos.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el Productos');
+        });
+      });
+    },
+    eliminarHistorialProductos: function eliminarHistorialProductos(root, _ref111) {
+      var id = _ref111.id;
+
+      return new Promise(function (resolve, object) {
+        historialProductos.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el HistorialProductos');
+        });
+      });
+    },
+    eliminarEntradaSalidaInventario: function eliminarEntradaSalidaInventario(root, _ref112) {
+      var id = _ref112.id;
+
+      return new Promise(function (resolve, object) {
+        entradaSalidaInventario.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el EntradaSalidaInventario');
+        });
+      });
+    },
+    eliminarDonacion: function eliminarDonacion(root, _ref113) {
+      var id = _ref113.id;
+
+      return new Promise(function (resolve, object) {
+        donacion.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el Donacion');
+        });
+      });
+    },
+    eliminarCajaChica: function eliminarCajaChica(root, _ref114) {
+      var id = _ref114.id;
+
+      return new Promise(function (resolve, object) {
+        cajaChica.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el CajaChica');
+        });
+      });
+    },
+    eliminarEntradaSalidaCajaChica: function eliminarEntradaSalidaCajaChica(root, _ref115) {
+      var id = _ref115.id;
+
+      return new Promise(function (resolve, object) {
+        entradaSalidaCajaChica.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el EntradaSalidaCajaChica');
+        });
+      });
+    },
+    eliminarHistorialCajaChica: function eliminarHistorialCajaChica(root, _ref116) {
+      var id = _ref116.id;
+
+      return new Promise(function (resolve, object) {
+        historialCajaChica.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el HistorialCajaChica');
+        });
+      });
+    },
+    eliminarRoles: function eliminarRoles(root, _ref117) {
+      var id = _ref117.id;
+
+      return new Promise(function (resolve, object) {
+        rol.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el Rol');
+        });
+      });
+    },
+    eliminarPermisos: function eliminarPermisos(root, _ref118) {
+      var id = _ref118.id;
+
+      return new Promise(function (resolve, object) {
+        permisos.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el Permisos');
+        });
+      });
+    },
+    eliminarUsuarios: function eliminarUsuarios(root, _ref119) {
+      var id = _ref119.id;
+
+      return new Promise(function (resolve, object) {
+        usuarios.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el Usuarios');
+        });
+      });
+    },
+    eliminarAsignacionPaciente: function eliminarAsignacionPaciente(root, _ref120) {
+      var id = _ref120.id;
+
+      return new Promise(function (resolve, object) {
+        asignarPaciente.findByIdAndUpdate({ _id: id }, { $set: { Estado: 'NO ASIGNADO', FechaSalida: new Date() } }, function (error, resultado) {
+          if (error) (0, _assert.rejects)(error);else resolve('Se a eliminado correctamente la asiganacion al paciente');
+        });
+      });
+    },
+    eliminarAsignacionCliente: function () {
+      var _ref121 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7(root, _ref122) {
+        var id = _ref122.id,
+            Edificio = _ref122.Edificio,
+            Nivel = _ref122.Nivel,
+            Habitacion = _ref122.Habitacion;
+        var existeedificio;
+        return regeneratorRuntime.wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                _context7.next = 2;
+                return edificio.findOne({ Nombre: Edificio });
+
+              case 2:
+                existeedificio = _context7.sent;
+                return _context7.abrupt('return', new Promise(function (resolve, object) {
+
+                  for (var index = 0; index < existeedificio.Estructura.length; index++) {
+                    for (var index1 = 0; index1 < existeedificio.Estructura[index].Habitaciones.length; index1++) {
+                      if (existeedificio.Estructura[index].Habitaciones[index1].Nombre == Habitacion) {
+                        existeedificio.Estructura[index].Habitaciones[index1].Ocupados--;
+                      }
+                    }
+                  }
+
+                  edificio.findOneAndUpdate({ _id: ObjectId(existeedificio.id) }, existeedificio, { new: true }, function (error, edificio) {
+                    if (error) (0, _assert.rejects)(error);else resolve(edificio);
+                  });
+
+                  AsignacionCliente.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
+                    if (error) (0, _assert.rejects)(error);else resolve('Se a eliminado correctamente la asiganacion cliente');
+                  });
+                }));
+
+              case 4:
+              case 'end':
+                return _context7.stop();
+            }
+          }
+        }, _callee7, undefined);
+      }));
+
+      return function eliminarAsignacionCliente(_x13, _x14) {
+        return _ref121.apply(this, arguments);
+      };
+    }()
+    // actualizarCliente: (root, { input }) => {
+    // 	return new Promise((resolve, object) => {
+    // 		Clientes.findOneAndUpdate({ _id: input.id }, input, { new: true }, (error, cliente) => {
+    // 			if (error) rejects(error);
+    // 			else resolve(cliente);
+    // 		});
+    // 	});
+    // },
+    // elimnarCliente: (root, { id }) => {
+    // 	return new Promise((resolve, object) => {
+    // 		Clientes.findOneAndDelete({ _id: id }, (error) => {
+    // 			if (error) rejects(error);
+    // 			else resolve('El Cliente se Eliminó Correctamente');
+    // 		});
+    // 	});
+    // },
+    // nuevoProducto: (root, { input }) => {
+    // 	const nuevoProducto = new Productos({
+    // 		nombre: input.nombre,
+    // 		precio: input.precio,
+    // 		stock: input.stock
+    // 	});
+
+    // 	nuevoProducto.id = nuevoProducto._id;
+
+    // 	return new Promise((resolve, object) => {
+    // 		nuevoProducto.save((error) => {
+    // 			if (error) rejects(error);
+    // 			else resolve(nuevoProducto);
+    // 		});
+    // 	});
+    // },
+    // actualizarProducto: (root, { input }) => {
+    // 	return new Promise((resolve, producto) => {
+    // 		Productos.findOneAndUpdate({ _id: input.id }, input, { new: true }, (error, producto) => {
+    // 			if (error) rejects(error);
+    // 			else resolve(producto);
+    // 		});
+    // 	});
+    // },
+    // elimnarProducto: (root, { id }) => {
+    // 	return new Promise((resolve, producto) => {
+    // 		Productos.findOneAndDelete({ _id: id }, (error) => {
+    // 			if (error) rejects(error);
+    // 			else resolve('El Prodcuto se Eliminó Correctamente');
+    // 		});
+    // 	});
+    // },
+    // nuevoPedido: (root, { input }) => {
+    // 	const nuevoPedido = new Pedidos({
+    // 		pedido: input.pedido,
+    // 		total: input.total,
+    // 		fecha: new Date(),
+    // 		cliente: input.cliente,
+    // 		estado: "PENDIENTE",
+    // 		vendedor:input.vendedor
+    // 	});
+    // 	nuevoPedido.id=nuevoPedido._id;
+
+    // 	return new Promise((resolve,object)=>{
+
+    // 		nuevoPedido.save((error)=>{
+    // 			if(error) rejects(error)
+    // 			else resolve(nuevoPedido)
+    // 		})
+    // 	})
+
+    // },
+    // actualizarEstado:(root,{input})=>{
+    // 	return new Promise((resolve,object)=>
+    // 	{
+
+    // 	//recorrer y  actulizar la cantidad de productos en base al estado del pedido
+
+    // 	const {estado}=input;
+    // 	let instruccion;
+    // 	if(estado==='COMPLETADO'){
+    // 		instruccion='-';
+    // 	}else if(estado==='CANCELADO'){
+    // 		instruccion='+';
+    // 	}
+
+    // 	input.pedido.forEach(pedido => {
+    // 		Productos.updateOne({_id:pedido.id},
+    // 			{ "$inc":
+    // 				{ "stock":`${instruccion}${pedido.cantidad }`}
+    // 			},function(error,){
+    // 				if(error) return new Error(error)
+    // 			}
+    // 		)
+    // 	});
+
+    // 		Pedidos.findOneAndUpdate({_id:input.id},input,{new :true},(error) =>{
+    // 				if(error)rejects(error);
+    // 				else resolve("Se actualizó correctamente")
+    // 		})
+    // 	}
+    // 	)
+
+    // }
+    // ,
+    // crearUsuario: async (root, { usuario,nombre, password,rol }) => {
+    // 	//revisando si un usuario contiene este password
+    // 	const existeUsuario = await Usuarios.findOne({ usuario });
+
+    // 	if (existeUsuario) {
+    // 		throw new Error('El usuario ya existe');
+    // 	}
+    // 	const nuevoUsuario = await new Usuarios({
+    // 		usuario,
+    // 		nombre,
+    // 		password,
+    // 		rol
+    // 	}).save();
+    // 	return 'Creado correctamente';
+    // },
+    // autenticarUsuario: async (root, { usuario, password }) => {
+    // 	const nombreUsuario = await Usuarios.findOne({ usuario });
+    // 	if (!nombreUsuario) {
+    // 		throw new Error('Usuario no encontrado');
+    // 	}
+
+    // 	const passwordCorrecto = await bcrypt.compare(password, nombreUsuario.password);
+    // 	//si el password es incorrecto
+    // 	if (!passwordCorrecto) {
+    // 		throw new Error('Password Incorrecto');
+    // 	}
+
+    // 	return {
+    // 		token: crearToken(nombreUsuario, process.env.SECRETO, '1hr')
+    // 	};
+    // }
+  },
+
+  Usuarios: {
+    Rol: function () {
+      var _ref123 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8(_ref124) {
+        var _Rol = _ref124.Rol;
+        var ids, RolesDate;
+        return regeneratorRuntime.wrap(function _callee8$(_context8) {
+          while (1) {
+            switch (_context8.prev = _context8.next) {
+              case 0:
                 ids = void 0;
                 RolesDate = void 0;
-                _context.prev = 2;
+                _context8.prev = 2;
 
                 ids = _Rol ? _Rol.map(function (Roles) {
                   return ObjectId(Roles.id);
                 }) : [];
 
                 if (!(ids.length > 0)) {
-                  _context.next = 10;
+                  _context8.next = 10;
                   break;
                 }
 
-                _context.next = 7;
+                _context8.next = 7;
                 return roles.find({ _id: { $in: ids } });
 
               case 7:
-                _context.t0 = _context.sent;
-                _context.next = 11;
+                _context8.t0 = _context8.sent;
+                _context8.next = 11;
                 break;
 
               case 10:
-                _context.t0 = [];
+                _context8.t0 = [];
 
               case 11:
-                RolesDate = _context.t0;
-                _context.next = 17;
+                RolesDate = _context8.t0;
+                _context8.next = 17;
                 break;
 
               case 14:
-                _context.prev = 14;
-                _context.t1 = _context['catch'](2);
+                _context8.prev = 14;
+                _context8.t1 = _context8['catch'](2);
 
-                console.error(_context.t1);
+                console.error(_context8.t1);
 
               case 17:
-                return _context.abrupt('return', RolesDate);
+                return _context8.abrupt('return', RolesDate);
 
               case 18:
               case 'end':
-                return _context.stop();
+                return _context8.stop();
             }
           }
-        }, _callee, undefined, [[2, 14]]);
+        }, _callee8, undefined, [[2, 14]]);
       }));
 
-      return function Rol(_x) {
-        return _ref.apply(this, arguments);
+      return function Rol(_x15) {
+        return _ref123.apply(this, arguments);
       };
     }()
-  }
-  //
-
-
-  //
-
-
-  //Generando token
-
-};_dotenv2.default.config({ path: 'variables.env' });
-
-var Query = {
-  getparametros: function getparametros(root, _ref3) {
-    var limit = _ref3.limit,
-        Offset = _ref3.Offset;
-
-    return new Promise(function (resolve, object) {
-      parametros.find({ Eliminado: 0 }, function (error, parametros) {
-        if (error) (0, _assert.rejects)(error);else resolve(parametros);
-      }).limit(limit).skip(Offset);
-    });
-  },
-  getParametro: function getParametro(root, _ref4) {
-    var id = _ref4.id;
-
-    return new Promise(function (resolve, object) {
-      parametros.findById(id, function (error, parametro) {
-        if (error) (0, _assert.rejects)(error);else resolve(parametro);
-      });
-    });
-  },
-  getConfiguraciones: function getConfiguraciones(root, _ref5) {
-    var limit = _ref5.limit,
-        Offset = _ref5.Offset;
-
-    return new Promise(function (resolve, object) {
-      configuraciones.find({ Eliminado: 0 }, function (error, configuraciones) {
-        if (error) (0, _assert.rejects)(error);else resolve(configuraciones);
-      }).limit(limit).skip(Offset);
-    });
-  },
-  getConfiguracion: function getConfiguracion(root, _ref6) {
-    var id = _ref6.id;
-
-    return new Promise(function (resolve, object) {
-      configuraciones.findById(id, function (error, configuracion) {
-        if (error) (0, _assert.rejects)(error);else resolve(configuracion);
-      });
-    });
-  },
-  getListaDeValores: function getListaDeValores(root, _ref7) {
-    var limit = _ref7.limit,
-        Offset = _ref7.Offset;
-
-    return new Promise(function (resolve, object) {
-      ListaDeValores.find({ Eliminado: 0 }, function (error, ListaDeValores) {
-        if (error) (0, _assert.rejects)(error);else resolve(ListaDeValores);
-      }).limit(limit).skip(Offset);
-    });
-  },
-  getListaDeValor: function getListaDeValor(root, _ref8) {
-    var id = _ref8.id;
-
-    return new Promise(function (resolve, object) {
-      ListaDeValores.findById(id, function (error, ListaDeValor) {
-        if (error) (0, _assert.rejects)(error);else resolve(ListaDeValor);
-      });
-    });
-  },
-
-  getAsignacionClientes: function getAsignacionClientes(root, _ref9) {
-    var limit = _ref9.limit,
-        Offset = _ref9.Offset;
-
-    return new Promise(function (resolve, object) {
-      AsignacionCliente.find({ Eliminado: 0 }, function (error, AsignacionClien) {
-        if (error) (0, _assert.rejects)(error);else resolve(AsignacionClien);
-      }).limit(limit).skip(Offset);
-    });
-  },
-  getAsignacionCliente: function getAsignacionCliente(root, _ref10) {
-    var id = _ref10.id;
-
-    return new Promise(function (resolve, object) {
-      AsignacionCliente.findById(id, function (error, AsignacionClien) {
-        if (error) (0, _assert.rejects)(error);else resolve(AsignacionClien);
-      });
-    });
-  },
-  getclientes: function getclientes(root, _ref11) {
-    var limit = _ref11.limit,
-        Offset = _ref11.Offset;
-
-    return new Promise(function (resolve, object) {
-      clientes.find({ Eliminado: 0 }, function (error, clientes) {
-        if (error) (0, _assert.rejects)(error);else resolve(clientes);
-      }).limit(limit).skip(Offset);
-    });
-  },
-  getCliente: function getCliente(root, _ref12) {
-    var id = _ref12.id;
-
-    return new Promise(function (resolve, object) {
-      clientes.findById(id, function (error, cliente) {
-        if (error) (0, _assert.rejects)(error);else resolve(cliente);
-      });
-    });
-  },
-  getresponsables: function getresponsables(root, _ref13) {
-    var limit = _ref13.limit,
-        Offset = _ref13.Offset;
-
-    return new Promise(function (resolve, object) {
-      clientes.find({ Eliminado: 0, Responsable: 1 }, function (error, clientes) {
-        if (error) (0, _assert.rejects)(error);else resolve(clientes);
-      }).limit(limit).skip(Offset);
-    });
-  },
-  getResponsable: function getResponsable(root, _ref14) {
-    var id = _ref14.id;
-
-    return new Promise(function (resolve, object) {
-      clientes.findById(id, function (error, cliente) {
-        if (error) (0, _assert.rejects)(error);else resolve(cliente);
-      });
-    });
-  },
-
-  getedificios: function getedificios(root, _ref15) {
-    var limit = _ref15.limit,
-        Offset = _ref15.Offset;
-
-    return new Promise(function (resolve, object) {
-      edificio.find({ Eliminado: 0 }, function (error, edificio) {
-        if (error) (0, _assert.rejects)(error);else resolve(edificio);
-      }).limit(limit).skip(Offset);
-    });
-  },
-  getedificio: function getedificio(root, _ref16) {
-    var id = _ref16.id;
-
-    return new Promise(function (resolve, object) {
-      edificio.findById(id, function (error, edificio) {
-        if (error) (0, _assert.rejects)(error);else resolve(edificio);
-      });
-    });
-  },
-  getbitacoras: function getbitacoras(root, _ref17) {
-    var limit = _ref17.limit,
-        Offset = _ref17.Offset;
-
-    return new Promise(function (resolve, object) {
-      bitacora.find({}, function (error, bitacora) {
-        if (error) (0, _assert.rejects)(error);else resolve(bitacora);
-      }).limit(limit).skip(Offset);
-    });
-  },
-  getbitacora: function getbitacora(root, _ref18) {
-    var id = _ref18.id;
-
-    return new Promise(function (resolve, object) {
-      bitacora.findById(id, function (error, bitacora) {
-        if (error) (0, _assert.rejects)(error);else resolve(bitacora);
-      });
-    });
-  },
-  getbitacoraSesiones: function getbitacoraSesiones(root, _ref19) {
-    var limit = _ref19.limit,
-        Offset = _ref19.Offset;
-
-    return new Promise(function (resolve, object) {
-      bitacoraSesion.find({}, function (error, bitacoraSesion) {
-        if (error) (0, _assert.rejects)(error);else resolve(bitacoraSesion);
-      }).limit(limit).skip(Offset);
-    });
-  },
-  getbitacoraSesion: function getbitacoraSesion(root, _ref20) {
-    var id = _ref20.id;
-
-    return new Promise(function (resolve, object) {
-      bitacoraSesion.findById(id, function (error, bitacoraSesion) {
-        if (error) (0, _assert.rejects)(error);else resolve(bitacoraSesion);
-      });
-    });
-  },
-  getpacientes: function getpacientes(root, _ref21) {
-    var limit = _ref21.limit,
-        Offset = _ref21.Offset;
-
-    return new Promise(function (resolve, object) {
-      pacientes.find({ Eliminado: 0 }, function (error, pacientes) {
-        if (error) (0, _assert.rejects)(error);else resolve(pacientes);
-      }).limit(limit).skip(Offset);
-    });
-  },
-  getpaciente: function getpaciente(root, _ref22) {
-    var id = _ref22.id;
-
-    return new Promise(function (resolve, object) {
-      pacientes.findById(id, function (error, paciente) {
-        if (error) (0, _assert.rejects)(error);else resolve(paciente);
-      });
-    });
-  },
-  getHospitales: function getHospitales(root, _ref23) {
-    var limit = _ref23.limit,
-        Offset = _ref23.Offset;
-
-    return new Promise(function (resolve, object) {
-      hospital.find({ Eliminado: 0 }, function (error, hospital) {
-        if (error) (0, _assert.rejects)(error);else resolve(hospital);
-      }).limit(limit).skip(Offset);
-    });
-  },
-  getHospital: function getHospital(root, _ref24) {
-    var id = _ref24.id;
-
-    return new Promise(function (resolve, object) {
-      hospital.findById(id, function (error, hospital) {
-        if (error) (0, _assert.rejects)(error);else resolve(hospital);
-      });
-    });
-  },
-  getproductos: function getproductos(root, _ref25) {
-    var limit = _ref25.limit,
-        Offset = _ref25.Offset;
-
-    return new Promise(function (resolve, object) {
-      productos.find({ Eliminado: 0 }, function (error, productos) {
-        if (error) (0, _assert.rejects)(error);else resolve(productos);
-      }).limit(limit).skip(Offset);
-    });
-  },
-  getproducto: function getproducto(root, _ref26) {
-    var id = _ref26.id;
-
-    return new Promise(function (resolve, object) {
-      productos.findById(id, function (error, producto) {
-        if (error) (0, _assert.rejects)(error);else resolve(producto);
-      });
-    });
-  },
-  gethistorialProductos: function gethistorialProductos(root, _ref27) {
-    var limit = _ref27.limit,
-        Offset = _ref27.Offset;
-
-    return new Promise(function (resolve, object) {
-      historialProductos.find({}, function (error, historialProductos) {
-        if (error) (0, _assert.rejects)(error);else resolve(historialProductos);
-      }).limit(limit).skip(Offset);
-    });
-  },
-  gethistorialProducto: function gethistorialProducto(root, _ref28) {
-    var id = _ref28.id;
-
-    return new Promise(function (resolve, object) {
-      historialProductos.findById(id, function (error, historialProducto) {
-        if (error) (0, _assert.rejects)(error);else resolve(historialProducto);
-      });
-    });
-  },
-  getentradaSalidaInventarios: function getentradaSalidaInventarios(root, _ref29) {
-    var limit = _ref29.limit,
-        Offset = _ref29.Offset;
-
-    return new Promise(function (resolve, object) {
-      entradaSalidaInventario.find({}, function (error, entradaSalidaInventario) {
-        if (error) (0, _assert.rejects)(error);else resolve(entradaSalidaInventario);
-      }).limit(limit).skip(Offset);
-    });
-  },
-  getentradaSalidaInventario: function getentradaSalidaInventario(root, _ref30) {
-    var id = _ref30.id;
-
-    return new Promise(function (resolve, object) {
-      entradaSalidaInventario.findById(id, function (error, entradaSalidaInventario) {
-        if (error) (0, _assert.rejects)(error);else resolve(entradaSalidaInventario);
-      });
-    });
-  },
-  getdonaciones: function getdonaciones(root, _ref31) {
-    var limit = _ref31.limit,
-        Offset = _ref31.Offset;
-
-    return new Promise(function (resolve, object) {
-      donacion.find({}, function (error, donacion) {
-        if (error) (0, _assert.rejects)(error);else resolve(donacion);
-      }).limit(limit).skip(Offset);
-    });
-  },
-  getdonacion: function getdonacion(root, _ref32) {
-    var id = _ref32.id;
-
-    return new Promise(function (resolve, object) {
-      donacion.findById(id, function (error, donacion) {
-        if (error) (0, _assert.rejects)(error);else resolve(donacion);
-      });
-    });
-  },
-  getcajaChicas: function getcajaChicas(root, _ref33) {
-    var limit = _ref33.limit,
-        Offset = _ref33.Offset;
-
-    return new Promise(function (resolve, object) {
-      cajaChica.find({}, function (error, cajaChica) {
-        if (error) (0, _assert.rejects)(error);else resolve(cajaChica);
-      }).limit(limit).skip(Offset);
-    });
-  },
-  getcajaChica: function getcajaChica(root, _ref34) {
-    var id = _ref34.id;
-
-    return new Promise(function (resolve, object) {
-      cajaChica.findById(id, function (error, cajaChica) {
-        if (error) (0, _assert.rejects)(error);else resolve(cajaChica);
-      });
-    });
-  },
-  getentradaSalidaCajaChicas: function getentradaSalidaCajaChicas(root, _ref35) {
-    var limit = _ref35.limit,
-        Offset = _ref35.Offset;
-
-    return new Promise(function (resolve, object) {
-      entradaSalidaCajaChica.find({}, function (error, entradaSalidaCajaChica) {
-        if (error) (0, _assert.rejects)(error);else resolve(entradaSalidaCajaChica);
-      }).limit(limit).skip(Offset);
-    });
-  },
-  getentradaSalidaCajaChica: function getentradaSalidaCajaChica(root, _ref36) {
-    var id = _ref36.id;
-
-    return new Promise(function (resolve, object) {
-      entradaSalidaCajaChica.findById(id, function (error, entradaSalidaCajaChica) {
-        if (error) (0, _assert.rejects)(error);else resolve(entradaSalidaCajaChica);
-      });
-    });
-  },
-  gethistorialCajaChicas: function gethistorialCajaChicas(root, _ref37) {
-    var limit = _ref37.limit,
-        Offset = _ref37.Offset;
-
-    return new Promise(function (resolve, object) {
-      historialCajaChica.find({}, function (error, historialCajaChica) {
-        if (error) (0, _assert.rejects)(error);else resolve(historialCajaChica);
-      }).limit(limit).skip(Offset);
-    });
-  },
-  gethistorialCajaChica: function gethistorialCajaChica(root, _ref38) {
-    var id = _ref38.id;
-
-    return new Promise(function (resolve, object) {
-      historialCajaChica.findById(id, function (error, historialCajaChica) {
-        if (error) (0, _assert.rejects)(error);else resolve(historialCajaChica);
-      });
-    });
-  },
-  getusuarios: function getusuarios(root, _ref39) {
-    var limit = _ref39.limit,
-        Offset = _ref39.Offset;
-
-    return new Promise(function (resolve, object) {
-      usuarios.find({ Eliminado: 0 }, function (error, usuario) {
-        if (error) (0, _assert.rejects)(error);else resolve(usuario);
-      }).limit(limit).skip(Offset);
-    });
-  },
-  getasignacionpacientes: function getasignacionpacientes(root, _ref40) {
-    var limit = _ref40.limit,
-        Offset = _ref40.Offset;
-
-    return new Promise(function (resolve, object) {
-      asignarPaciente.find({ Estado: 'ASIGNADO' }, function (error, data) {
-        if (error) (0, _assert.rejects)(error);else resolve(data);
-      }).limit(limit).skip(Offset);
-    });
-  },
-  getasignacionpaciente: function getasignacionpaciente(root, _ref41) {
-    var id = _ref41.id;
-
-    return new Promise(function (resolve, object) {
-      asignarPaciente.findById(id, function (error, data) {
-        if (error) (0, _assert.rejects)(error);else resolve(data);
-      });
-    });
-  },
-  getusuario: function getusuario(root, _ref42) {
-    var id = _ref42.id;
-
-    return new Promise(function (resolve, object) {
-      usuarios.findById(id, function (error, usuario) {
-        if (error) (0, _assert.rejects)(error);else resolve(usuario);
-      });
-    });
-  },
-
-  obtenerUsuario: function obtenerUsuario(root, arg, _ref43) {
-    var usuarioActual = _ref43.usuarioActual;
-
-
-    if (!usuarioActual) {
-      return null;
-    }
-
-    //obtener el usuariio actual del request del JWT verificado
-    var usuario = usuarios.findOne({ Usuario: usuarioActual.Usuario, Eliminado: 0 });
-
-    if (!usuario) {
-      return null;
-    }
-    return usuario;
-  },
-
-  getroles: function getroles(root, _ref44) {
-    var limit = _ref44.limit,
-        Offset = _ref44.Offset;
-
-    return new Promise(function (resolve, object) {
-      roles.find({ Eliminado: 0 }, function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve(resultado);
-      }).limit(limit).skip(Offset);
-    });
-  },
-  getrol: function getrol(root, _ref45) {
-    var id = _ref45.id;
-
-    return new Promise(function (resolve, object) {
-      roles.findById(id, function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve(resultado);
-      });
-    });
-  },
-  getpermisos: function getpermisos(root, _ref46) {
-    var limit = _ref46.limit,
-        Offset = _ref46.Offset;
-
-    return new Promise(function (resolve, object) {
-      permisos.find({ Eliminado: 0 }, function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve(resultado);
-      }).limit(limit).skip(Offset);
-    });
-  },
-  getpermiso: function getpermiso(root, _ref47) {
-    var id = _ref47.id;
-
-    return new Promise(function (resolve, object) {
-      permisos.findById(id, function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve(resultado);
-      });
-    });
-  },
-  reportesasigClier1: function reportesasigClier1(root, _ref48) {
-    var id = _ref48.id;
-
-    return new Promise(function (resolve, object) {
-      AsignacionCliente.aggregate([{
-        $match: { Eliminado: 0 }
-      }, {
-        $group: {
-          _id: "$Edificio",
-          Total: { $sum: 1 }
-        }
-      }], function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve(resultado);
-      });
-    });
-  },
-  reportesasigClier2: function reportesasigClier2(root, _ref49) {
-    var id = _ref49.id;
-
-    return new Promise(function (resolve, object) {
-      AsignacionCliente.aggregate([{
-        $match: { Eliminado: 1 }
-      }, {
-        $group: {
-          _id: "$Edificio",
-          Total: { $sum: 1 }
-        }
-      }], function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve(resultado);
-      });
-    });
-  },
-  reportesasigpas1: function reportesasigpas1(root, _ref50) {
-    var id = _ref50.id;
-
-    return new Promise(function (resolve, object) {
-      asignarPaciente.aggregate([{
-        $group: {
-          _id: '$Fecha',
-          Total: {
-            $sum: 1
-          }
-
-        }
-      }], function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve(resultado);
-      });
-    });
-  },
-  reportesasigpas2: function reportesasigpas2(root, _ref51) {
-    var id = _ref51.id;
-
-    return new Promise(function (resolve, object) {
-      asignarPaciente.aggregate([{
-        $group: {
-          _id: '$Clientes',
-          Total: {
-            $sum: 1
-          }
-        }
-      }], function (error, resultado) {
-
-        if (error) (0, _assert.rejects)(error);else resolve(resultado);
-      });
-    });
-  },
-  reportesproducr1: function reportesproducr1(root, _ref52) {
-    var id = _ref52.id;
-
-    return new Promise(function (resolve, object) {
-      productos.aggregate([{
-        $group: {
-          _id: "$Nombre",
-          Total: { $sum: "$Cantidad" }
-        }
-      }], function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve(resultado);
-      });
-    });
-  },
-  reportesdonacior1: function reportesdonacior1(root, _ref53) {
-    var id = _ref53.id;
-
-    return new Promise(function (resolve, object) {
-      donacion.aggregate([{
-        $group: {
-          _id: "$Fecha",
-          Total: { $sum: 1 }
-        }
-      }], function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve(resultado);
-      });
-    });
   }
   //
 
@@ -920,1317 +2230,7 @@ var Query = {
 };var crearToken = function crearToken(usuarioLogin, secreto, expiresIn) {
   var Usuario = usuarioLogin.Usuario;
 
-  return _jsonwebtoken2.default.sign({ Usuario: Usuario }, secreto, { expiresIn: expiresIn });
-};
-
-var Mutation = {
-  crearParametros: function crearParametros(root, _ref54) {
-    var input = _ref54.input;
-
-    var Save_Data = new parametros({
-      Nombre: input.Nombre,
-      Valor: input.Valor,
-      Eliminado: 0
-    });
-    Save_Data.id = Save_Data._id;
-
-    return new Promise(function (resolve, object) {
-      Save_Data.save(function (error) {
-        if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
-      });
-    });
-  },
-  crearConfiguracion: function crearConfiguracion(root, _ref55) {
-    var input = _ref55.input;
-
-    var Save_Data = new configuraciones({
-      Nombre: input.Nombre,
-      Valor: input.Valor,
-      Eliminado: 0
-    });
-    Save_Data.id = Save_Data._id;
-
-    return new Promise(function (resolve, object) {
-      Save_Data.save(function (error) {
-        if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
-      });
-    });
-  },
-  crearListaDeValores: function crearListaDeValores(root, _ref56) {
-    var input = _ref56.input;
-
-    var Save_Data = new ListaDeValores({
-      Nombre: input.Nombre,
-      Valor: input.Valor,
-      Eliminado: 0
-    });
-    Save_Data.id = Save_Data._id;
-
-    return new Promise(function (resolve, object) {
-      Save_Data.save(function (error) {
-        if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
-      });
-    });
-  },
-  crearClientes: function crearClientes(root, _ref57) {
-    var input = _ref57.input;
-
-    var Save_Data = new clientes({
-      Nombre: input.Nombre,
-      Apellido: input.Apellido,
-      Edad: input.Edad,
-      Direccion: input.Direccion,
-      Dpi: input.Dpi,
-      Nit: input.Nit,
-      Sexo: input.Sexo,
-      Municipio: input.Municipio,
-      Departamento: input.Departamento,
-      Responsable: input.Responsable,
-      Eliminado: 0
-    });
-    Save_Data.id = Save_Data._id;
-
-    return new Promise(function (resolve, object) {
-      Save_Data.save(function (error) {
-        if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
-      });
-    });
-  },
-
-  crearAsignacionCliente: function crearAsignacionCliente(root, _ref58) {
-    var input = _ref58.input;
-
-    var Save_Data = new AsignacionCliente({
-      Edificio: input.Edificio,
-      Nivel: input.Nivel,
-      Habitacion: input.Habitacion,
-      FechaIngreso: input.FechaIngreso,
-      FechaSalida: input.FechaSalida,
-      Cliente: input.Cliente,
-      Eliminado: 0
-    });
-    Save_Data.id = Save_Data._id;
-
-    for (var index = 0; index < input.Edificios.Estructura.length; index++) {
-      for (var index1 = 0; index1 < input.Edificios.Estructura[index].Habitaciones.length; index1++) {
-        if (input.Edificios.Estructura[index].Habitaciones[index1].Nombre == input.Habitacion) {
-          input.Edificios.Estructura[index].Habitaciones[index1].Ocupados++;
-        }
-      }
-    }
-
-    return new Promise(function (resolve, object) {
-
-      console.log(input.Edificios.id);
-
-      edificio.findOneAndUpdate({ _id: ObjectId(input.Edificios.id) }, input.Edificios, { new: true }, function (error, edificio) {
-        if (error) (0, _assert.rejects)(error);else resolve(edificio);
-      });
-
-      Save_Data.save(function (error) {
-        if (error) (0, _assert.rejects)(error);else resolve("Cliente Asignado");
-      });
-    });
-  },
-  crearResponsables: function crearResponsables(root, _ref59) {
-    var input = _ref59.input;
-
-    var Save_Data = new clientes({
-      Nombre: input.Nombre,
-      Apellido: input.Apellido,
-      Edad: input.Edad,
-      Direccion: input.Direccion,
-      Dpi: input.Dpi,
-      Nit: input.Nit,
-      Sexo: input.Sexo,
-      Municipio: input.Municipio,
-      Departamento: input.Departamento,
-      Responsable: 1,
-      Eliminado: 0
-    });
-    Save_Data.id = Save_Data._id;
-
-    return new Promise(function (resolve, object) {
-      Save_Data.save(function (error) {
-        if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
-      });
-    });
-  },
-
-  crearEdificio: function crearEdificio(root, _ref60) {
-    var input = _ref60.input;
-
-    var Save_Data = new edificio({
-      Nombre: input.Nombre,
-      Latitud: input.Latitud,
-      Longitud: input.Longitud,
-      Estructura: input.Estructura,
-      Eliminado: 0
-    });
-    Save_Data.id = Save_Data._id;
-
-    return new Promise(function (resolve, object) {
-      Save_Data.save(function (error) {
-        if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
-      });
-    });
-  },
-  crearBitacora: function crearBitacora(root, _ref61) {
-    var input = _ref61.input;
-
-    var Save_Data = new bitacora({
-      Evento: input.Evento,
-      Documento: input.Documento,
-      UsuarioId: input.UsuarioId,
-      Fecha: input.Fecha,
-      Pagina: input.Pagina,
-      Data: input.Data
-    });
-    Save_Data.id = Save_Data._id;
-
-    return new Promise(function (resolve, object) {
-      Save_Data.save(function (error) {
-        if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
-      });
-    });
-  },
-  crearBitacoraSesion: function crearBitacoraSesion(root, _ref62) {
-    var input = _ref62.input;
-
-    var Save_Data = new bitacoraSesion({
-      UsuarioId: input.UsuarioId,
-      FechaInicio: input.FechaInicio,
-      FechaCierre: input.FechaCierre
-    });
-    Save_Data.id = Save_Data._id;
-
-    return new Promise(function (resolve, object) {
-      Save_Data.save(function (error) {
-        if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
-      });
-    });
-  },
-  crearPacientes: function crearPacientes(root, _ref63) {
-    var input = _ref63.input;
-
-    var Save_Data = new pacientes({
-      Nombre: input.Nombre,
-      Apellido: input.Apellido,
-      Edad: input.Edad,
-      Direccion: input.Direccion,
-      Dpi: input.Dpi,
-      Nit: input.Nit,
-      Sexo: input.Sexo,
-      Municipio: input.Municipio,
-      Departamento: input.Departamento,
-      Estado: input.Estado,
-      ClienteId: input.ClienteId,
-      Hospital: input.hospital,
-      Sala: input.Sala,
-      Habitacion: input.Habitacion,
-      FechaIngreso: input.FechaIngreso,
-      FechaSalida: input.FechaSalida,
-      Eliminado: 0
-    });
-    Save_Data.id = Save_Data._id;
-
-    return new Promise(function (resolve, object) {
-      Save_Data.save(function (error) {
-        if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
-      });
-    });
-  },
-  crearHospital: function crearHospital(root, _ref64) {
-    var input = _ref64.input;
-
-    var Save_Data = new hospital({
-      Nombre: input.Nombre,
-      Descripcion: input.Descripcion,
-      Latitud: input.Latitud,
-      Longitud: input.Longitud,
-      Eliminado: 0
-    });
-    Save_Data.id = Save_Data._id;
-
-    return new Promise(function (resolve, object) {
-      Save_Data.save(function (error) {
-        if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
-      });
-    });
-  },
-  crearProductos: function crearProductos(root, _ref65) {
-    var input = _ref65.input;
-
-    var Save_Data = new productos({
-      Nombre: input.Nombre,
-      Descripcion: input.Descripcion,
-      SKU: input.SKU,
-      CodigoBarra: input.CodigoBarra,
-      Clasificacion: input.Clasificacion,
-      Tipo: input.Tipo,
-      Precio: input.Precio,
-      Cantidad: input.Cantidad,
-      Eliminado: 0
-    });
-    Save_Data.id = Save_Data._id;
-
-    return new Promise(function (resolve, object) {
-      Save_Data.save(function (error) {
-        if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
-      });
-    });
-  },
-  crearHistorialProductos: function crearHistorialProductos(root, _ref66) {
-    var input = _ref66.input;
-
-    var Save_Data = new historialProductos({
-      ProductoId: input.ProductoId,
-      Fecha: input.Fecha,
-      Cantidad: input.Cantidad,
-      Precio: input.Precio
-    });
-    Save_Data.id = Save_Data._id;
-
-    return new Promise(function (resolve, object) {
-      Save_Data.save(function (error) {
-        if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
-      });
-    });
-  },
-  crearEntradaSalidaInventario: function crearEntradaSalidaInventario(root, _ref67) {
-    var input = _ref67.input;
-
-    var Save_Data = new entradaSalidaInventario({
-      DonacionId: input.DonacionId,
-      UsuarioId: input.UsuarioId,
-      Productos: input.Productos,
-      Responsable: input.Responsable,
-      Tipo: input.Tipo,
-      Fecha: input.Fecha,
-      Estado: input.Estado,
-      Total: input.Total
-    });
-    Save_Data.id = Save_Data._id;
-
-    return new Promise(function (resolve, object) {
-      var Estado = input.Estado;
-      var Tipo = input.Tipo;
-
-
-      if (Estado === 'APROBADO') {
-        var instruccion = void 0;
-        if (Tipo === 1) {
-          instruccion = '+';
-        } else if (Tipo === 2) {
-          instruccion = '-';
-        }
-
-        Save_Data.Productos.forEach(function (producto) {
-          console.log(producto);
-          productos.updateOne({ _id: ObjectId(producto.id) }, {
-            $inc: { Cantidad: '' + instruccion + producto.Cantidad }
-          }, function (error) {
-            if (error) return new Error(error);
-          });
-        });
-      }
-
-      Save_Data.save(function (error) {
-        if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
-      });
-    });
-  },
-  crearAsignacionPacientes: function crearAsignacionPacientes(root, _ref68) {
-    var input = _ref68.input;
-
-    var Save_Data = new asignarPaciente({
-      Hospitales: input.Hospitales,
-      Clientes: input.Clientes,
-      Pacientes: input.Pacientes,
-      Fecha: input.Fecha,
-      FechaSalida: input.FechaSalida,
-      Eliminado: 0,
-      Estado: input.Estado,
-      Observaciones: input.Observaciones
-    });
-    Save_Data.id = Save_Data._id;
-
-    console.log(Save_Data.Eliminado);
-    return new Promise(function (resolve, object) {
-      Save_Data.save(function (error) {
-        if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
-      });
-    });
-  },
-  crearDonacion: function crearDonacion(root, _ref69) {
-    var input = _ref69.input;
-
-    var Save_Data = new donacion({
-      UsuarioId: input.UsuarioId,
-      Responsable: input.Responsable,
-      Donante: input.Donante,
-      Tipo: input.Tipo,
-      Fecha: input.Fecha,
-      Estado: input.Estado,
-      Cantidad: input.Cantidad
-    });
-    Save_Data.id = Save_Data._id;
-    return new Promise(function (resolve, object) {
-      var instruccion = '+';
-
-      if (input.Tipo === 1) {
-        cajaChica.updateOne({}, {
-          $inc: { Cantidad: '' + instruccion + input.Cantidad }
-        }, function (error) {
-          if (error) return new Error(error);
-        });
-      }
-      Save_Data.save(function (error) {
-        if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
-      });
-    });
-  },
-  crearCajaChica: function crearCajaChica(root, _ref70) {
-    var input = _ref70.input;
-
-    var Save_Data = new cajaChica({
-      Cantidad: input.Cantidad,
-      Fecha: input.Fecha
-    });
-    Save_Data.id = Save_Data._id;
-
-    return new Promise(function (resolve, object) {
-      Save_Data.save(function (error) {
-        if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
-      });
-    });
-  },
-  crearEntradaSalidaCajaChica: function crearEntradaSalidaCajaChica(root, _ref71) {
-    var input = _ref71.input;
-
-    var Save_Data = new entradaSalidaCajaChica({
-      DonacionId: input.DonacionId,
-      UsuarioId: input.UsuarioId,
-      Responsable: input.Responsable,
-      Cantidad: input.Cantidad,
-      Tipo: input.Tipo,
-      Fecha: input.Fecha,
-      Estado: input.Estado
-    });
-    Save_Data.id = Save_Data._id;
-
-    return new Promise(function (resolve, object) {
-      var Estado = input.Estado;
-      var Tipo = input.Tipo;
-      var Cantidad = input.Cantidad;
-
-
-      if (Estado === 'APROBADO') {
-        var instruccion = void 0;
-        if (Tipo === 1) {
-          instruccion = '+';
-        } else if (Tipo === 2) {
-          instruccion = '-';
-        }
-
-        cajaChica.updateOne({}, {
-          $inc: { Cantidad: '' + instruccion + Cantidad }
-        }, function (error) {
-          if (error) return new Error(error);
-        });
-      }
-
-      Save_Data.save(function (error) {
-        if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
-      });
-    });
-  },
-  crearHistorialCajaChica: function crearHistorialCajaChica(root, _ref72) {
-    var input = _ref72.input;
-
-    var Save_Data = new historialCajaChica({
-      Cantidad: input.Cantidad,
-      Fecha: input.Fecha
-    });
-    Save_Data.id = Save_Data._id;
-
-    return new Promise(function (resolve, object) {
-      Save_Data.save(function (error) {
-        if (error) (0, _assert.rejects)(error);else resolve(Save_Data);
-      });
-    });
-  },
-  actualizarListaDeValores: function actualizarListaDeValores(root, _ref73) {
-    var input = _ref73.input;
-
-    return new Promise(function (resolve, object) {
-      ListaDeValores.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, lista) {
-        if (error) (0, _assert.rejects)(error);else resolve(lista);
-      });
-    });
-  },
-
-  crearUsuarios: function () {
-    var _ref74 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(root, _ref75) {
-      var input = _ref75.input;
-      var Usuario, existe, Save_Data;
-      return regeneratorRuntime.wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              Usuario = input.Usuario;
-              _context2.next = 3;
-              return usuarios.findOne({ Usuario: Usuario });
-
-            case 3:
-              existe = _context2.sent;
-
-              if (!existe) {
-                _context2.next = 6;
-                break;
-              }
-
-              throw new Error('El usuario ya existe');
-
-            case 6:
-              Save_Data = new usuarios({
-                Usuario: input.Usuario,
-                Nombre: input.Nombre,
-                Password: input.Password,
-                Rol: input.Rol,
-                Eliminado: 0
-              });
-
-              // return(`El Usuario fue creado con exito`)
-
-              Save_Data.id = Save_Data._id;
-
-              return _context2.abrupt('return', new Promise(function (resolve, object) {
-                Save_Data.save(function (error) {
-                  if (error) (0, _assert.rejects)(error);else resolve('El Usuario fue creado con exito');
-                });
-              }));
-
-            case 9:
-            case 'end':
-              return _context2.stop();
-          }
-        }
-      }, _callee2, undefined);
-    }));
-
-    return function crearUsuarios(_x2, _x3) {
-      return _ref74.apply(this, arguments);
-    };
-  }(),
-  autenticarUsuario: function () {
-    var _ref76 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(root, _ref77) {
-      var usuario = _ref77.usuario,
-          password = _ref77.password;
-      var nombreUsuario, passwordCorrecto;
-      return regeneratorRuntime.wrap(function _callee3$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              _context3.next = 2;
-              return usuarios.findOne({ Usuario: usuario, Eliminado: 0 });
-
-            case 2:
-              nombreUsuario = _context3.sent;
-
-              if (nombreUsuario) {
-                _context3.next = 5;
-                break;
-              }
-
-              throw new Error('Usuario no encontrado');
-
-            case 5:
-              _context3.next = 7;
-              return _bcrypt2.default.compare(password, nombreUsuario.Password);
-
-            case 7:
-              passwordCorrecto = _context3.sent;
-
-              if (passwordCorrecto) {
-                _context3.next = 10;
-                break;
-              }
-
-              throw new Error('Password Incorrecto');
-
-            case 10:
-              return _context3.abrupt('return', {
-                token: crearToken(nombreUsuario, process.env.SECRETO, '1hr')
-              });
-
-            case 11:
-            case 'end':
-              return _context3.stop();
-          }
-        }
-      }, _callee3, undefined);
-    }));
-
-    return function autenticarUsuario(_x4, _x5) {
-      return _ref76.apply(this, arguments);
-    };
-  }(),
-  crearRoles: function () {
-    var _ref78 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(root, _ref79) {
-      var input = _ref79.input;
-      var Nombre, existe, Save_Data;
-      return regeneratorRuntime.wrap(function _callee4$(_context4) {
-        while (1) {
-          switch (_context4.prev = _context4.next) {
-            case 0:
-              Nombre = input.Nombre;
-              _context4.next = 3;
-              return roles.findOne({ Nombre: Nombre });
-
-            case 3:
-              existe = _context4.sent;
-
-              if (!existe) {
-                _context4.next = 6;
-                break;
-              }
-
-              throw new Error('El rol ya existe');
-
-            case 6:
-              Save_Data = new roles({
-                Nombre: input.Nombre,
-                Descripcion: input.Descripcion,
-                Permiso: input.Permiso,
-                Eliminado: 0
-              });
-
-
-              Save_Data.id = Save_Data._id;
-
-              return _context4.abrupt('return', new Promise(function (resolve, object) {
-                Save_Data.save(function (error) {
-                  if (error) (0, _assert.rejects)(error);else resolve('El Rol fue creado con exito');
-                });
-              }));
-
-            case 9:
-            case 'end':
-              return _context4.stop();
-          }
-        }
-      }, _callee4, undefined);
-    }));
-
-    return function crearRoles(_x6, _x7) {
-      return _ref78.apply(this, arguments);
-    };
-  }(),
-
-  AgregarPermisos: function () {
-    var _ref80 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(root, _ref81) {
-      var input = _ref81.input;
-      return regeneratorRuntime.wrap(function _callee5$(_context5) {
-        while (1) {
-          switch (_context5.prev = _context5.next) {
-            case 0:
-              return _context5.abrupt('return', new Promise(function (resolve, object) {
-                roles.update({ _id: input.id }, { $set: { Permiso: input.Permiso } }, function (error, usuarios) {
-                  if (error) (0, _assert.rejects)(error);else resolve(usuarios);
-                });
-              }));
-
-            case 1:
-            case 'end':
-              return _context5.stop();
-          }
-        }
-      }, _callee5, undefined);
-    }));
-
-    return function AgregarPermisos(_x8, _x9) {
-      return _ref80.apply(this, arguments);
-    };
-  }(),
-
-  crearPermisos: function () {
-    var _ref82 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(root, _ref83) {
-      var input = _ref83.input;
-      var Nombre, existe, Save_Data;
-      return regeneratorRuntime.wrap(function _callee6$(_context6) {
-        while (1) {
-          switch (_context6.prev = _context6.next) {
-            case 0:
-              Nombre = input.Nombre;
-              _context6.next = 3;
-              return permisos.findOne({ Nombre: Nombre });
-
-            case 3:
-              existe = _context6.sent;
-
-              if (!existe) {
-                _context6.next = 6;
-                break;
-              }
-
-              throw new Error('El permiso ya existe');
-
-            case 6:
-              Save_Data = new permisos({
-                Nombre: input.Nombre,
-                Descripcion: input.Descripcion,
-                URL: input.URL,
-                Menu: input.Menu,
-                Activo: input.Activo,
-                Opcion: input.Opcion,
-                Eliminado: 0
-              });
-
-              Save_Data.id = Save_Data._id;
-
-              return _context6.abrupt('return', new Promise(function (resolve, object) {
-                Save_Data.save(function (error) {
-                  if (error) (0, _assert.rejects)(error);else resolve('El Permiso fue creado con exito');
-                });
-              }));
-
-            case 9:
-            case 'end':
-              return _context6.stop();
-          }
-        }
-      }, _callee6, undefined);
-    }));
-
-    return function crearPermisos(_x10, _x11) {
-      return _ref82.apply(this, arguments);
-    };
-  }(),
-
-  actualizarCliente: function actualizarCliente(root, _ref84) {
-    var input = _ref84.input;
-
-    return new Promise(function (resolve, object) {
-      clientes.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, cliente) {
-        if (error) (0, _assert.rejects)(error);else resolve(cliente);
-      });
-    });
-  },
-  actualizarResponsable: function actualizarResponsable(root, _ref85) {
-    var input = _ref85.input;
-
-    return new Promise(function (resolve, object) {
-      clientes.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, cliente) {
-        if (error) (0, _assert.rejects)(error);else resolve(cliente);
-      });
-    });
-  },
-
-  actualizarEdificio: function actualizarEdificio(root, _ref86) {
-    var input = _ref86.input;
-
-    return new Promise(function (resolve, object) {
-      edificio.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, edificio) {
-        if (error) (0, _assert.rejects)(error);else resolve(edificio);
-      });
-    });
-  },
-
-  actualizarBitacora: function actualizarBitacora(root, _ref87) {
-    var input = _ref87.input;
-
-    return new Promise(function (resolve, object) {
-      bitacora.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, bitacora) {
-        if (error) (0, _assert.rejects)(error);else resolve(bitacora);
-      });
-    });
-  },
-
-  actualizarBitacoraSesion: function actualizarBitacoraSesion(root, _ref88) {
-    var input = _ref88.input;
-
-    return new Promise(function (resolve, object) {
-      bitacoraSesion.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, bitacoraS) {
-        if (error) (0, _assert.rejects)(error);else resolve(bitacoraS);
-      });
-    });
-  },
-
-  actualizarPacientes: function actualizarPacientes(root, _ref89) {
-    var input = _ref89.input;
-
-    return new Promise(function (resolve, object) {
-      pacientes.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, pacientes) {
-        if (error) (0, _assert.rejects)(error);else resolve(pacientes);
-      });
-    });
-  },
-
-  actualizarHospital: function actualizarHospital(root, _ref90) {
-    var input = _ref90.input;
-
-    return new Promise(function (resolve, object) {
-      hospital.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, hospital) {
-        if (error) (0, _assert.rejects)(error);else resolve(hospital);
-      });
-    });
-  },
-
-  actualizarProductos: function actualizarProductos(root, _ref91) {
-    var input = _ref91.input;
-
-    return new Promise(function (resolve, object) {
-      productos.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, productos) {
-        if (error) (0, _assert.rejects)(error);else resolve(productos);
-      });
-    });
-  },
-
-  actualizarHistorialProductos: function actualizarHistorialProductos(root, _ref92) {
-    var input = _ref92.input;
-
-    return new Promise(function (resolve, object) {
-      pistorialProductos.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, historialproductos) {
-        if (error) (0, _assert.rejects)(error);else resolve(historialproductos);
-      });
-    });
-  },
-
-  actualizarEntradaSalidaInventario: function actualizarEntradaSalidaInventario(root, _ref93) {
-    var input = _ref93.input;
-
-    return new Promise(function (resolve, object) {
-      var Estado = input.Estado;
-      var Tipo = input.Tipo;
-
-
-      if (Estado === 'APROBADO') {
-        var instruccion = void 0;
-
-        if (Tipo === 1) {
-          instruccion = '+';
-        } else if (Tipo === 2) {
-          instruccion = '-';
-        }
-
-        input.Productos.forEach(function (producto) {
-          productos.updateOne({ _id: ObjectId(producto.id) }, {
-            $inc: { Cantidad: '' + instruccion + producto.Cantidad }
-          }, function (error) {
-            if (error) return new Error(error);
-          });
-        });
-      }
-
-      entradaSalidaInventario.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, esinventario) {
-        if (error) (0, _assert.rejects)(error);else resolve(esinventario);
-      });
-    });
-  },
-
-  actualizarDonacion: function actualizarDonacion(root, _ref94) {
-    var input = _ref94.input;
-
-    return new Promise(function (resolve, object) {
-      donacion.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, donacion) {
-        if (error) (0, _assert.rejects)(error);else resolve(donacion);
-      });
-    });
-  },
-
-  actualizarCajaChica: function actualizarCajaChica(root, _ref95) {
-    var input = _ref95.input;
-
-    return new Promise(function (resolve, object) {
-      cajaChica.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, cajachica) {
-        if (error) (0, _assert.rejects)(error);else resolve(cajachica);
-      });
-    });
-  },
-
-  actualizarEntradaSalidaCajaChica: function actualizarEntradaSalidaCajaChica(root, _ref96) {
-    var input = _ref96.input;
-
-    return new Promise(function (resolve, object) {
-      var Estado = input.Estado;
-      var Tipo = input.Tipo;
-      var Cantidad = input.Cantidad;
-
-
-      if (Estado === 'APROBADO') {
-        var instruccion = void 0;
-        if (Tipo === 1) {
-          instruccion = '+';
-        } else if (Tipo === 2) {
-          instruccion = '-';
-        }
-
-        cajaChica.updateOne({}, {
-          $inc: { Cantidad: '' + instruccion + Cantidad }
-        }, function (error) {
-          if (error) return new Error(error);
-        });
-      }
-
-      entradaSalidaCajaChica.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, escajachica) {
-        if (error) (0, _assert.rejects)(error);else resolve(escajachica);
-      });
-    });
-  },
-
-  actualizarHistorialCajaChica: function actualizarHistorialCajaChica(root, _ref97) {
-    var input = _ref97.input;
-
-    return new Promise(function (resolve, object) {
-      historialCajaChica.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, historialcajachica) {
-        if (error) (0, _assert.rejects)(error);else resolve(historialcajachica);
-      });
-    });
-  },
-
-  actualizarRoles: function actualizarRoles(root, _ref98) {
-    var input = _ref98.input;
-
-    return new Promise(function (resolve, object) {
-      roles.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, rol) {
-        if (error) (0, _assert.rejects)(error);else resolve(rol);
-      });
-    });
-  },
-
-  actualizarPermisos: function actualizarPermisos(root, _ref99) {
-    var input = _ref99.input;
-
-    return new Promise(function (resolve, object) {
-      permisos.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, permisos) {
-        if (error) (0, _assert.rejects)(error);else resolve(permisos);
-      });
-    });
-  },
-
-  actualizarUsuarios: function () {
-    var _ref100 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7(root, _ref101) {
-      var input = _ref101.input;
-      var nombreUsuario;
-      return regeneratorRuntime.wrap(function _callee7$(_context7) {
-        while (1) {
-          switch (_context7.prev = _context7.next) {
-            case 0:
-              _context7.next = 2;
-              return usuarios.findOne({ Password: input.Password });
-
-            case 2:
-              nombreUsuario = _context7.sent;
-
-              if (nombreUsuario) {
-                _context7.next = 7;
-                break;
-              }
-
-              _bcrypt2.default.genSalt(10, function (err, salt) {
-                if (err) return next(err);
-                _bcrypt2.default.hash(input.Password, salt, function (err, hash) {
-                  if (err) return next(err);
-                  input.Password = hash;
-                  return new Promise(function (resolve, object) {
-                    usuarios.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, usuarios) {
-                      if (error) (0, _assert.rejects)(error);else resolve(usuarios);
-                    });
-                  });
-                });
-              });
-              _context7.next = 8;
-              break;
-
-            case 7:
-              return _context7.abrupt('return', new Promise(function (resolve, object) {
-                usuarios.findOneAndUpdate({ _id: input.id }, input, { new: true }, function (error, usuarios) {
-                  if (error) (0, _assert.rejects)(error);else resolve(usuarios);
-                });
-              }));
-
-            case 8:
-            case 'end':
-              return _context7.stop();
-          }
-        }
-      }, _callee7, undefined);
-    }));
-
-    return function actualizarUsuarios(_x12, _x13) {
-      return _ref100.apply(this, arguments);
-    };
-  }(),
-
-  eliminarParametros: function eliminarParametros(root, _ref102) {
-    var id = _ref102.id;
-
-    return new Promise(function (resolve, object) {
-      parametros.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el Parametros');
-      });
-    });
-  },
-  eliminarConfiguracion: function eliminarConfiguracion(root, _ref103) {
-    var id = _ref103.id;
-
-    return new Promise(function (resolve, object) {
-      configuracion.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el Configuracion');
-      });
-    });
-  },
-  eliminarListaDeValores: function eliminarListaDeValores(root, _ref104) {
-    var id = _ref104.id;
-
-    return new Promise(function (resolve, object) {
-      ListaDeValores.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el ListaDeValores');
-      });
-    });
-  },
-  eliminarClientes: function eliminarClientes(root, _ref105) {
-    var id = _ref105.id;
-
-    return new Promise(function (resolve, object) {
-      clientes.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el Clientes');
-      });
-    });
-  },
-  eliminarResponsables: function eliminarResponsables(root, _ref106) {
-    var id = _ref106.id;
-
-    return new Promise(function (resolve, object) {
-      clientes.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el Clientes');
-      });
-    });
-  },
-  eliminarEdificio: function eliminarEdificio(root, _ref107) {
-    var id = _ref107.id;
-
-    return new Promise(function (resolve, object) {
-      edificio.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el Edificio');
-      });
-    });
-  },
-  eliminarBitacora: function eliminarBitacora(root, _ref108) {
-    var id = _ref108.id;
-
-    return new Promise(function (resolve, object) {
-      bitacora.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el Bitacora');
-      });
-    });
-  },
-  eliminarBitacoraSesion: function eliminarBitacoraSesion(root, _ref109) {
-    var id = _ref109.id;
-
-    return new Promise(function (resolve, object) {
-      bitacoraSesion.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el BitacoraSesion');
-      });
-    });
-  },
-  eliminarPacientes: function eliminarPacientes(root, _ref110) {
-    var id = _ref110.id;
-
-    return new Promise(function (resolve, object) {
-      pacientes.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el Pacientes');
-      });
-    });
-  },
-  eliminarHospital: function eliminarHospital(root, _ref111) {
-    var id = _ref111.id;
-
-    return new Promise(function (resolve, object) {
-      hospital.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el Hospital');
-      });
-    });
-  },
-  eliminarProductos: function eliminarProductos(root, _ref112) {
-    var id = _ref112.id;
-
-    return new Promise(function (resolve, object) {
-      productos.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el Productos');
-      });
-    });
-  },
-  eliminarHistorialProductos: function eliminarHistorialProductos(root, _ref113) {
-    var id = _ref113.id;
-
-    return new Promise(function (resolve, object) {
-      historialProductos.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el HistorialProductos');
-      });
-    });
-  },
-  eliminarEntradaSalidaInventario: function eliminarEntradaSalidaInventario(root, _ref114) {
-    var id = _ref114.id;
-
-    return new Promise(function (resolve, object) {
-      entradaSalidaInventario.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el EntradaSalidaInventario');
-      });
-    });
-  },
-  eliminarDonacion: function eliminarDonacion(root, _ref115) {
-    var id = _ref115.id;
-
-    return new Promise(function (resolve, object) {
-      donacion.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el Donacion');
-      });
-    });
-  },
-  eliminarCajaChica: function eliminarCajaChica(root, _ref116) {
-    var id = _ref116.id;
-
-    return new Promise(function (resolve, object) {
-      cajaChica.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el CajaChica');
-      });
-    });
-  },
-  eliminarEntradaSalidaCajaChica: function eliminarEntradaSalidaCajaChica(root, _ref117) {
-    var id = _ref117.id;
-
-    return new Promise(function (resolve, object) {
-      entradaSalidaCajaChica.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el EntradaSalidaCajaChica');
-      });
-    });
-  },
-  eliminarHistorialCajaChica: function eliminarHistorialCajaChica(root, _ref118) {
-    var id = _ref118.id;
-
-    return new Promise(function (resolve, object) {
-      historialCajaChica.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el HistorialCajaChica');
-      });
-    });
-  },
-  eliminarRoles: function eliminarRoles(root, _ref119) {
-    var id = _ref119.id;
-
-    return new Promise(function (resolve, object) {
-      rol.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el Rol');
-      });
-    });
-  },
-  eliminarPermisos: function eliminarPermisos(root, _ref120) {
-    var id = _ref120.id;
-
-    return new Promise(function (resolve, object) {
-      permisos.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el Permisos');
-      });
-    });
-  },
-  eliminarUsuarios: function eliminarUsuarios(root, _ref121) {
-    var id = _ref121.id;
-
-    return new Promise(function (resolve, object) {
-      usuarios.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve('Se al eliminado correctamente el Usuarios');
-      });
-    });
-  },
-  eliminarAsignacionPaciente: function eliminarAsignacionPaciente(root, _ref122) {
-    var id = _ref122.id;
-
-    return new Promise(function (resolve, object) {
-      asignarPaciente.findByIdAndUpdate({ _id: id }, { $set: { Estado: 'NO ASIGNADO', FechaSalida: new Date() } }, function (error, resultado) {
-        if (error) (0, _assert.rejects)(error);else resolve('Se a eliminado correctamente la asiganacion al paciente');
-      });
-    });
-  },
-  eliminarAsignacionCliente: function () {
-    var _ref123 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8(root, _ref124) {
-      var id = _ref124.id,
-          Edificio = _ref124.Edificio,
-          Nivel = _ref124.Nivel,
-          Habitacion = _ref124.Habitacion;
-      var existeedificio;
-      return regeneratorRuntime.wrap(function _callee8$(_context8) {
-        while (1) {
-          switch (_context8.prev = _context8.next) {
-            case 0:
-              _context8.next = 2;
-              return edificio.findOne({ Nombre: Edificio });
-
-            case 2:
-              existeedificio = _context8.sent;
-              return _context8.abrupt('return', new Promise(function (resolve, object) {
-
-                for (var index = 0; index < existeedificio.Estructura.length; index++) {
-                  for (var index1 = 0; index1 < existeedificio.Estructura[index].Habitaciones.length; index1++) {
-                    if (existeedificio.Estructura[index].Habitaciones[index1].Nombre == Habitacion) {
-                      existeedificio.Estructura[index].Habitaciones[index1].Ocupados--;
-                    }
-                  }
-                }
-
-                edificio.findOneAndUpdate({ _id: ObjectId(existeedificio.id) }, existeedificio, { new: true }, function (error, edificio) {
-                  if (error) (0, _assert.rejects)(error);else resolve(edificio);
-                });
-
-                AsignacionCliente.findByIdAndUpdate({ _id: id }, { $set: { Eliminado: 1 } }, function (error, resultado) {
-                  if (error) (0, _assert.rejects)(error);else resolve('Se a eliminado correctamente la asiganacion cliente');
-                });
-              }));
-
-            case 4:
-            case 'end':
-              return _context8.stop();
-          }
-        }
-      }, _callee8, undefined);
-    }));
-
-    return function eliminarAsignacionCliente(_x14, _x15) {
-      return _ref123.apply(this, arguments);
-    };
-  }()
-  // actualizarCliente: (root, { input }) => {
-  // 	return new Promise((resolve, object) => {
-  // 		Clientes.findOneAndUpdate({ _id: input.id }, input, { new: true }, (error, cliente) => {
-  // 			if (error) rejects(error);
-  // 			else resolve(cliente);
-  // 		});
-  // 	});
-  // },
-  // elimnarCliente: (root, { id }) => {
-  // 	return new Promise((resolve, object) => {
-  // 		Clientes.findOneAndDelete({ _id: id }, (error) => {
-  // 			if (error) rejects(error);
-  // 			else resolve('El Cliente se Eliminó Correctamente');
-  // 		});
-  // 	});
-  // },
-  // nuevoProducto: (root, { input }) => {
-  // 	const nuevoProducto = new Productos({
-  // 		nombre: input.nombre,
-  // 		precio: input.precio,
-  // 		stock: input.stock
-  // 	});
-
-  // 	nuevoProducto.id = nuevoProducto._id;
-
-  // 	return new Promise((resolve, object) => {
-  // 		nuevoProducto.save((error) => {
-  // 			if (error) rejects(error);
-  // 			else resolve(nuevoProducto);
-  // 		});
-  // 	});
-  // },
-  // actualizarProducto: (root, { input }) => {
-  // 	return new Promise((resolve, producto) => {
-  // 		Productos.findOneAndUpdate({ _id: input.id }, input, { new: true }, (error, producto) => {
-  // 			if (error) rejects(error);
-  // 			else resolve(producto);
-  // 		});
-  // 	});
-  // },
-  // elimnarProducto: (root, { id }) => {
-  // 	return new Promise((resolve, producto) => {
-  // 		Productos.findOneAndDelete({ _id: id }, (error) => {
-  // 			if (error) rejects(error);
-  // 			else resolve('El Prodcuto se Eliminó Correctamente');
-  // 		});
-  // 	});
-  // },
-  // nuevoPedido: (root, { input }) => {
-  // 	const nuevoPedido = new Pedidos({
-  // 		pedido: input.pedido,
-  // 		total: input.total,
-  // 		fecha: new Date(),
-  // 		cliente: input.cliente,
-  // 		estado: "PENDIENTE",
-  // 		vendedor:input.vendedor
-  // 	});
-  // 	nuevoPedido.id=nuevoPedido._id;
-
-  // 	return new Promise((resolve,object)=>{
-
-  // 		nuevoPedido.save((error)=>{
-  // 			if(error) rejects(error)
-  // 			else resolve(nuevoPedido)
-  // 		})
-  // 	})
-
-  // },
-  // actualizarEstado:(root,{input})=>{
-  // 	return new Promise((resolve,object)=>
-  // 	{
-
-  // 	//recorrer y  actulizar la cantidad de productos en base al estado del pedido
-
-  // 	const {estado}=input;
-  // 	let instruccion;
-  // 	if(estado==='COMPLETADO'){
-  // 		instruccion='-';
-  // 	}else if(estado==='CANCELADO'){
-  // 		instruccion='+';
-  // 	}
-
-  // 	input.pedido.forEach(pedido => {
-  // 		Productos.updateOne({_id:pedido.id},
-  // 			{ "$inc":
-  // 				{ "stock":`${instruccion}${pedido.cantidad }`}
-  // 			},function(error,){
-  // 				if(error) return new Error(error)
-  // 			}
-  // 		)
-  // 	});
-
-  // 		Pedidos.findOneAndUpdate({_id:input.id},input,{new :true},(error) =>{
-  // 				if(error)rejects(error);
-  // 				else resolve("Se actualizó correctamente")
-  // 		})
-  // 	}
-  // 	)
-
-  // }
-  // ,
-  // crearUsuario: async (root, { usuario,nombre, password,rol }) => {
-  // 	//revisando si un usuario contiene este password
-  // 	const existeUsuario = await Usuarios.findOne({ usuario });
-
-  // 	if (existeUsuario) {
-  // 		throw new Error('El usuario ya existe');
-  // 	}
-  // 	const nuevoUsuario = await new Usuarios({
-  // 		usuario,
-  // 		nombre,
-  // 		password,
-  // 		rol
-  // 	}).save();
-  // 	return 'Creado correctamente';
-  // },
-  // autenticarUsuario: async (root, { usuario, password }) => {
-  // 	const nombreUsuario = await Usuarios.findOne({ usuario });
-  // 	if (!nombreUsuario) {
-  // 		throw new Error('Usuario no encontrado');
-  // 	}
-
-  // 	const passwordCorrecto = await bcrypt.compare(password, nombreUsuario.password);
-  // 	//si el password es incorrecto
-  // 	if (!passwordCorrecto) {
-  // 		throw new Error('Password Incorrecto');
-  // 	}
-
-  // 	return {
-  // 		token: crearToken(nombreUsuario, process.env.SECRETO, '1hr')
-  // 	};
-  // }
+  return _jsonwebtoken2.default.sign({ Usuario: Usuario }, "supersecreto", { expiresIn: expiresIn });
 };
 
 //
@@ -2240,12 +2240,10 @@ var app = (0, _express2.default)();
 
 app.use(_express2.default.static(_path2.default.join(__dirname, 'cliente/build')));
 
-var server = new _apolloServerExpress.ApolloServer(_extends({
+var server = new _apolloServerExpress.ApolloServer({
   typeDefs: typeDefs,
+  resolvers: resolvers,
 
-  Mutation: Mutation,
-  Query: Query
-}, types, {
   context: function () {
     var _ref125 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee9(_ref126) {
       var req = _ref126.req;
@@ -2264,7 +2262,7 @@ var server = new _apolloServerExpress.ApolloServer(_extends({
 
               _context9.prev = 2;
               _context9.next = 5;
-              return _jsonwebtoken2.default.verify(token, process.env.SECRETO);
+              return _jsonwebtoken2.default.verify(token, "supersecreto");
 
             case 5:
               usuarioActual = _context9.sent;
@@ -2292,7 +2290,7 @@ var server = new _apolloServerExpress.ApolloServer(_extends({
       return _ref125.apply(this, arguments);
     };
   }()
-}));
+});
 
 app.get('*', function (req, res) {
   res.sendFile(_path2.default.join(__dirname + '/cliente/build/index.html'));

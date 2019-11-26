@@ -290,26 +290,7 @@ const usuarios = model ('usuarios', usuariosSchema);
 
 
 
-const types={
-    Usuarios: {
-    Rol: async ({ Rol }) => {
-           let ids
-           let RolesDate
-     
-      try {
-        ids = Rol ? Rol.map(Roles => ObjectId(Roles.id)) : []
-         RolesDate = ids.length > 0
-          ? await roles.find({ _id: { $in: ids } }          )
-          : []
-      
-      } catch (error) {
-        console.error(error)
-      }
 
-      return RolesDate
-    }
-  }
-}
 //
 
 
@@ -322,8 +303,8 @@ const types={
 //Generando token
 
 dotenv.config({ path: 'variables.env' });
-
-const Query= {
+const resolvers={
+Query : {
 getparametros:(root,{limit, Offset })=>{
 return new Promise((resolve,object)=>{
 	parametros.find({Eliminado:0},(error,parametros)=>{
@@ -798,27 +779,8 @@ return new Promise((resolve,object)=>{
 }
 
 }
-//
 
-
-
-
-
-//
-
-
-
-
-
-
-//Generando token
-
-const crearToken = (usuarioLogin, secreto, expiresIn) => {
-  const {Usuario} = usuarioLogin;
-  return jwt.sign ({Usuario}, secreto, {expiresIn});
-};
-
-const Mutation = {
+,Mutation : {
   crearParametros:     (root, {input}) => {
     const Save_Data = new parametros ({
                                         Nombre:    input.Nombre,
@@ -1296,7 +1258,7 @@ const Mutation = {
     }
     // console.log( crearToken(nombreUsuario, process.env.SECRETO, '1hr'))
     return {
-      token: crearToken (nombreUsuario, process.env.SECRETO, '1hr')
+      token: crearToken (nombreUsuario, "supersecreto", '1hr')
     };
   },
   crearRoles:        async (root, {input}) => {
@@ -1945,8 +1907,47 @@ if(!nombreUsuario)
   // 		token: crearToken(nombreUsuario, process.env.SECRETO, '1hr')
   // 	};
   // }
-};
+},
 
+    Usuarios: {
+    Rol: async ({ Rol }) => {
+           let ids
+           let RolesDate
+     
+      try {
+        ids = Rol ? Rol.map(Roles => ObjectId(Roles.id)) : []
+         RolesDate = ids.length > 0
+          ? await roles.find({ _id: { $in: ids } }          )
+          : []
+      
+      } catch (error) {
+        console.error(error)
+      }
+
+      return RolesDate
+    }
+  }
+
+}
+//
+
+
+
+
+
+//
+
+
+
+
+
+
+//Generando token
+
+const crearToken = (usuarioLogin, secreto, expiresIn) => {
+  const {Usuario} = usuarioLogin;
+  return jwt.sign ({Usuario}, "supersecreto", {expiresIn});
+};
 
 //
 
@@ -1958,10 +1959,7 @@ app.use(express.static(path.join(__dirname, 'cliente/build')));
 
 const server = new ApolloServer({
     typeDefs,
-    
-		Mutation,
-		Query,
-		...types
+		resolvers
 	,
     context:async ({req})=>{
         //obtener el token del servidor
@@ -1970,7 +1968,7 @@ const server = new ApolloServer({
         if(token !=="null"){
             try {
                 // Verificar el token del front end (cliente)
-                const usuarioActual=await jwt.verify(token,process.env.SECRETO);
+                const usuarioActual=await jwt.verify(token,"supersecreto");
                 // agregamos el usuario actual al request
 
                 req.usuarioActual=usuarioActual;
